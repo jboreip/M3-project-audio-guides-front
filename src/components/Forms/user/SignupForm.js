@@ -3,7 +3,8 @@ import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 
 
-const LoginForm = ({errors, isSubmitting, ...props}) => {
+const SignupForm = ({errors, isSubmitting}) => {
+  console.log(errors)
   return (
     <div className="App">
       <Form>
@@ -32,19 +33,19 @@ export default withFormik({
       .min(8)
       .required()
   }),
-  handleSubmit(values, {props, setSubmitting, setErrors, resetForm})  {
+  handleSubmit(values, {setSubmitting, setErrors, resetForm})  {
+    setTimeout(()=>{
       console.log(values)
-      console.log(props)
       if(values.email === '1@1.com') {
         setErrors({
           email: 'email already taken'
         })
       } else {
         console.log('todo ok')
-        props.dologin(values)
         resetForm()
       }
       setSubmitting(false);
+    },2000)
   }
- })(LoginForm);
+ })(SignupForm);
 

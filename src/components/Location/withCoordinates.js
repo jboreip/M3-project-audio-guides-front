@@ -1,29 +1,25 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const withCoordinates = (Comp) => class Coordinates extends Component {
+const withCoordinates = (Comp) => () => {
 
-  state ={
-    location: [],
-  }
+const [location, setLocation ] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     navigator.geolocation.getCurrentPosition((location) => {
       let newLocation = [];
       newLocation.push(location.coords.latitude, location.coords.longitude)
-      this.setState({
-        location: newLocation
-      })
-      console.log('Current user location:\nLat: ' + this.state.location[0] + ' | Lon: ' + this.state.location[1])
+      setLocation(newLocation)
     })
-  }
+  }, []) 
 
-  render() {
+  console.log('Current user location:\nLat: ' + location[0] + ' | Lon: ' + location[1])
+
     return (
       <>
-        <Comp location={this.state.location}/>
+        <Comp location={location}/>
       </>
     )
-  }
+
 }
 
 

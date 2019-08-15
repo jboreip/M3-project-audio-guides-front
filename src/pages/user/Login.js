@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
+import LoginForm from '../../components/Forms/user/LoginForm';
 
 // ya no necesitamos el service, ya que los métodos (login, logout, etc.) los hemos pasado con el withAuth como props
 // import auth from '../services/auth-service';
@@ -11,10 +12,8 @@ class Login extends Component {
     password: '',
   }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const { email, password } = this.state
-
+  doLogin = (values) => {
+    const { email, password } = values;
     // ahora en lugar de llamar a auth.login, cogemos el login the this.props
     // auth.login({ email, password })
     this.props.login({ email, password })
@@ -30,17 +29,17 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    // const { email, password } = this.state;
     return (
       <>
-        <form onSubmit={this.handleFormSubmit}>
+        {/* <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='email' >Email:</label>
           <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
-        </form>
-
+        </form> */}
+        <LoginForm dologin={this.doLogin}/>
         <p>You don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
         </p>
