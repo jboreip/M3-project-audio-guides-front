@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router , Switch } from 'react-router-dom';
 
-import Navbar from './components/Navbar.js';
-import Private from './pages/Private';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Navbar from './components/Navigation/Navbar';
+import Discover from './pages/user/Discover';
+import Signup from './pages/user/Signup';
+import Login from './pages/user/Login';
 import AuthProvider from './contexts/auth-context'
-import PrivateRoute from './components/PrivateRoute.js';
-import AnonRoute from './components/AnonRoute.js';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import AnonRoute from './components/Routes/AnonRoute';
 
 import './App.css';
 import 'milligram';
@@ -27,7 +27,7 @@ class App extends Component {
             {/* <PrivateRoute path="/private" render={() => (
               <Private test='test prop to pass'></Private>
             )} /> */}
-            <PrivateRoute path="/private" component={Private} />
+            <PrivateRoute path="/discover" component={Discover} />
           </Switch>
         </div>
         </AuthProvider>

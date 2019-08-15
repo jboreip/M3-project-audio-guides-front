@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // como el export no es con default, para el import utilizamos los {}
-import {AuthContext} from '../contexts/auth-context'
+import {AuthContext} from '../../contexts/auth-context'
 
 const withAuth = (Comp) => {
   return class WithAuth extends Component {

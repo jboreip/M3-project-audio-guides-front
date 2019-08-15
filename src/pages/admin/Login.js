@@ -7,20 +7,19 @@ import withAuth from '../components/withAuth';
 
 class Login extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state
+    const { email, password } = this.state
 
     // ahora en lugar de llamar a auth.login, cogemos el login the this.props
-    // auth.login({ username, password })
-    this.props.login({ username, password })
+    // auth.login({ email, password })
+    this.props.login({ email, password })
     .then( (user) => {
-      console.log(user);
-      // this.props.history.push("/privatew");
+      this.props.history.push('/discover');
     })
     .catch( error => console.log(error) )
   }
@@ -31,12 +30,12 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username' >Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
+          <label htmlFor='email' >Email:</label>
+          <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />

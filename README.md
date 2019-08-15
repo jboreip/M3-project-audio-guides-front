@@ -189,7 +189,7 @@ Spot model
   name: {type: String, required: true},
   description: {type: String, required: true},
   city: {type: String, required: true},
-  type: {type: String, enum: [***to be defined***], required: true},
+  type: {type: String, enum: ['culture-sports', 'architecture', 'history', 'nature-sightseeing', 'gastronomy', 'alternative-others'], required: true},
   location: {type: {type: String, default: 'Point'}, coordinates: [Number], required: true},
   img: {type: String, required: true},
   rating: [Number],
