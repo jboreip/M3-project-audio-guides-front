@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import withAuth from '../../components/Auth/withAuth';
-import withCoordinates from '../../components/Location/withCoordinates';
+import SpotsMap from '../../components/Discover/map/SpotsMap.js';
+
 
 class Discover extends Component {
   render() {
     return (
-      <div>
-        <h1>Welcome {this.props.user.name}</h1>
-      </div>
+        <SpotsMap />
     )
   }
 }
 
-export default withCoordinates(withAuth(Discover));
+export default withAuth(Discover);

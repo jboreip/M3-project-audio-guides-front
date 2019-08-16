@@ -31,7 +31,7 @@ class Login extends Component {
   render() {
     // const { email, password } = this.state;
     return (
-      <>
+      <React.Fragment>
         {/* <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='email' >Email:</label>
           <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
@@ -43,7 +43,7 @@ class Login extends Component {
         <p>You don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
         </p>
-      </>
+      </ React.Fragment>
     )
   }
 }

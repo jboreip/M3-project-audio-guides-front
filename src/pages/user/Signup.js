@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
+import SignupForm from '../../components/Forms/user/SignupForm';
 
 // import auth from '../services/auth-service';
 
@@ -15,9 +16,10 @@ class Signup extends Component {
     language: 'EN',
   };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    const {email, password, name, birthdate, city, language} = this.state
+  doSignup = (values) => {
+    // event.preventDefault();
+    console.log(values)
+    const {email, password, name, birthdate, city, language} = values;
 
     this.props.signup({ email, password, name, birthdate, city, language })
       .then( (user) => {
@@ -39,10 +41,10 @@ class Signup extends Component {
   }
 
   render() {
-    const {email, password, name, birthdate, city, language} = this.state
+    // const {email, password, name, birthdate, city, language} = this.state
     return (
-      <>
-        <form onSubmit={this.handleFormSubmit}>
+      <React.Fragment>
+        {/* <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='email'>Email:</label>
           <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
@@ -59,13 +61,13 @@ class Signup extends Component {
             <option value='ES'>ES</option> 
           </select>
           <input type='submit' value='Signup' />
-        </form>
+        </form> */}
 
+        <SignupForm dosignup={this.doSignup}/>
         <p>Already have account? 
           <Link to={'/login'}> Login</Link>
         </p>
-
-      </>
+      </React.Fragment>
     )
   }
 }

@@ -14,11 +14,17 @@ const [location, setLocation ] = useState([]);
 
   console.log('Current user location:\nLat: ' + location[0] + ' | Lon: ' + location[1])
 
+  if(location.length === 0){
     return (
-      <>
-        <Comp location={location}/>
-      </>
+      <p>Loading...</p>
     )
+  }else{
+    return (
+      <React.Fragment>
+        <Comp location={location}/>
+      </React.Fragment>
+    )
+  }
 
 }
 

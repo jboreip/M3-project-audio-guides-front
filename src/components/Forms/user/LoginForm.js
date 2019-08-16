@@ -3,14 +3,14 @@ import {withFormik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 
 
-const LoginForm = ({errors, isSubmitting, ...props}) => {
+const LoginForm = ({values, errors, touched, isSubmitting, ...props}) => {
   return (
     <div className="App">
       <Form>
-        {errors.email && <p>{errors.email}</p>}
         <Field type='email' name='email' placeholder='Write your email'/>
-        {errors.password && <p>{errors.password}</p>}
-        <Field type='password' name='password' placeholder='Write your password'/>
+        {errors.email && touched.email ? <p>{errors.email}</p> : null}
+        <Field type='password' name='password' placeholder='Set a password'/>
+        {errors.password && touched.password ? <p>{errors.password}</p> : null}
         <button disabled={isSubmitting && true} type='submit'> submit </button>
       </Form>
     </div>
@@ -26,25 +26,16 @@ export default withFormik({
   },
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .email('It has to be correct')
+      .email('e-mail has to be correct, please check!')
       .required(),
     password: Yup.string()
       .min(8)
       .required()
   }),
   handleSubmit(values, {props, setSubmitting, setErrors, resetForm})  {
-      console.log(values)
-      console.log(props)
-      if(values.email === '1@1.com') {
-        setErrors({
-          email: 'email already taken'
-        })
-      } else {
-        console.log('todo ok')
-        props.dologin(values)
-        resetForm()
-      }
-      setSubmitting(false);
+    props.dologin(values)
+    resetForm()
+    setSubmitting(false);
   }
  })(LoginForm);
 

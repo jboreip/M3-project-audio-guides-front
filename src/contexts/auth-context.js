@@ -64,7 +64,7 @@ class AuthProvider extends Component {
   render() {
     const {user, isLoggedIn, isLoading} = this.state;
     return (
-        <>
+        <React.Fragment>
           {isLoading ? <p>Loading...</p>
           :
           <AuthContext.Provider value={{
@@ -77,7 +77,7 @@ class AuthProvider extends Component {
             {this.props.children}
           </AuthContext.Provider>
           }
-        </>
+        </ React.Fragment>
     )
   }
 }
