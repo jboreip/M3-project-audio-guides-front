@@ -2,8 +2,9 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import React, { Component } from 'react'
 import withCoordinates from '../../Location/withCoordinates';
+import SpotDot from '../../Discover/map/SpotDot';
 // import MapGL from 'react-map-gl'
-import ReactMapGL, {GeolocateControl, Marker} from 'react-map-gl'
+import ReactMapGL, {GeolocateControl} from 'react-map-gl'
 // import { GeoJSONLayer } from "react-mapbox-gl";
 // import DeckGL from 'deck.gl';
 // import { ScatterplotLayer } from '@deck.gl/layers';
@@ -113,7 +114,7 @@ class SpotsMap extends Component {
 
             {/* Print Markers */}
             {
-            markers.length > 0 ? (markers.map((marker, i) => {return (<Marker key={marker._id} latitude={marker.location.coordinates[0]} longitude={marker.location.coordinates[1]} offsetLeft={-40} offsetTop={-10}><img src={'/images/marker.png'} width={50} alt={'marker'}/></Marker>)})) : null
+            markers.length > 0 ? (markers.map((marker, i) => {return (<SpotDot key={marker._id} id={marker._id} latitude={marker.location.coordinates[0]} longitude={marker.location.coordinates[1]} />)})) : null
             }
 
             <Geocoder 
