@@ -12,6 +12,7 @@ class SpotsService {
     return this.spots.get('/spots/')
     .then(response => response.data)
   }
+
 }
 
 const spotsService = new SpotsService();

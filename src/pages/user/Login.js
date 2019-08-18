@@ -40,7 +40,7 @@ class Login extends Component {
           <input type='submit' value='Login' />
         </form> */}
         <LoginForm dologin={this.doLogin}/>
-        <p>You don't have an accout yet?
+        <p>Don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
         </p>
       </ React.Fragment>

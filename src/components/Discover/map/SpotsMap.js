@@ -6,12 +6,10 @@ import SpotDot from '../../Discover/map/SpotDot';
 // import MapGL from 'react-map-gl'
 import ReactMapGL, {GeolocateControl} from 'react-map-gl'
 // import { GeoJSONLayer } from "react-mapbox-gl";
-// import DeckGL from 'deck.gl';
-// import { ScatterplotLayer } from '@deck.gl/layers';
-// import { GeoJsonLayer } from '@deck.gl/layers';
 import Geocoder from 'react-map-gl-geocoder';
-import axios from 'axios';
+// import axios from 'axios';
 import spots from '../../../services/spots-service';
+import CloseLayer from '../../Discover/map/CloseLayer'
 
 
 const token = 'pk.eyJ1IjoicGllcm9iaiIsImEiOiJjanlpbjYxYXEwMDg3M21yeHhiYzZvbGh1In0.s4qwoXQLSGVCCH84CbKd_g';
@@ -24,6 +22,8 @@ const geolocateStyle = {
 
 class SpotsMap extends Component {
 
+
+
   state = { 
     viewport :{
       latitude: 0,
@@ -31,17 +31,18 @@ class SpotsMap extends Component {
       zoom: 13
     },
     countryCode: '',
-    // searchResultLayer: null,
     style: 'mapbox://styles/mapbox/streets-v9',
-    markers: []
+    spots: [],
+    popupsStatus:false,
+    closeLayer: false,
   }
 
-  getCurrentCountry = async () => {
-    const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.location[1]},${this.props.location[0]}.json?access_token=${token}`);
-    this.setState({
-      countryCode: response.data.features[5].properties.short_code.toUpperCase()
-    })
-  };
+  // getCurrentCountry = async () => {
+  //   const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.location[1]},${this.props.location[0]}.json?access_token=${token}`);
+  //   this.setState({
+  //     countryCode: response.data.features[5].properties.short_code.toUpperCase()
+  //   })
+  // };
 
   getPlansLocations = async () => {
   const response = await spots.getSpots();
@@ -49,10 +50,10 @@ class SpotsMap extends Component {
   }
 
   componentDidMount(){
-    this.getCurrentCountry();
-    this.getPlansLocations().then((markers) =>{
-      const {listOfSpots} = markers
-      console.log(markers)
+    // this.getCurrentCountry();
+    this.getPlansLocations().then((spots) =>{
+      const {listOfSpots} = spots
+      console.log(spots)
 
       this.setState({
         viewport:{
@@ -60,12 +61,63 @@ class SpotsMap extends Component {
           longitude: this.props.location[1],
           zoom: 13
         },
-        markers: listOfSpots
+        spots: listOfSpots
+      })
+    })
+  }
+
+
+
+
+
+  closeLayerToggle = () => {
+    const {closeLayer} = this.state;
+    // close layer activada
+    if (!closeLayer){
+      console.log('close layer activada')
+      this.setState({
+        closeLayer: true
       })
     }
-    )
-    
   }
+
+  popupsToggle = () => {
+    const {popupsStatus} = this.state;
+    if (popupsStatus) {
+      // hay popups abiertos
+    console.log('no hay popups abiertos + close layer desactivada')
+    this.setState({
+      popupsStatus: false,
+      closeLayer: false,
+    })
+    } else {
+      // no hay popups abiertos
+    console.log('hay popups abiertos')
+    this.setState({
+      popupsStatus: true
+    })
+    }
+  }
+
+
+  closeAllPopups = () => {
+    console.log('clicked close layer')
+    const { popupsStatus } = this.state;
+    if(popupsStatus){
+      console.log('close all popups executed')
+      this.setState({
+        popupsStatus: false,
+        closeLayer: false,
+      })
+    }
+  }
+
+
+
+
+
+
+
   
   mapRef = React.createRef()
 
@@ -83,6 +135,7 @@ class SpotsMap extends Component {
     });
   };
 
+
   // handleOnResult = event => {
   //   console.log('handleOnResult executed')
   //   this.setState({
@@ -99,47 +152,68 @@ class SpotsMap extends Component {
 
 
     render(){
-      const { viewport, countryCode, style, markers} = this.state
+      const { viewport, style, spots, popupsStatus, closeLayer} = this.state
       
       return (
-          <ReactMapGL 
-            ref={this.mapRef}
-            {...viewport}
-            mapStyle={style}
-            width='100%'
-            height='100%'
-            onViewportChange={this.handleViewportChange}
-            mapboxApiAccessToken={token}
-            >
-
-            {/* Print Markers */}
-            {
-            markers.length > 0 ? (markers.map((marker, i) => {return (<SpotDot key={marker._id} id={marker._id} latitude={marker.location.coordinates[0]} longitude={marker.location.coordinates[1]} />)})) : null
-            }
-
-            <Geocoder 
-              mapRef={this.mapRef}
-              onResult={this.handleOnResult}
-              // onViewportChange={this.handleGeocoderViewportChange}
-              onViewportChange={this.handleGeocoderViewportChange}
+            <ReactMapGL 
+              ref={this.mapRef}
+              {...viewport}
+              mapStyle={style}
+              width='100%'  
+              height='100%'
+              onViewportChange={this.handleViewportChange}
               mapboxApiAccessToken={token}
-              position='top-left'
-              limit={5}
-              types={'poi, place'}
-              // countries={countryCode}
-              // proximity={[viewport.longitude,viewport.latitude]}
-              trackProximity={true}
-            />
+              // onClick={this.closePopups}
+              // onClick={(e) => {
+              //   this.setState({
+              //     closePopups:true
+              //   })
+              // }}
+              >   
 
-            <GeolocateControl
-              style={geolocateStyle}
-              positionOptions={{enableHighAccuracy: true}}
-              trackUserLocation={true}
-            />
 
-            {/* <DeckGL {...viewport} layers={[searchResultLayer]} /> */}
-            
-          </ReactMapGL>
+              <Geocoder 
+                mapRef={this.mapRef}
+                onResult={this.handleOnResult}
+                // onViewportChange={this.handleGeocoderViewportChange}
+                onViewportChange={this.handleGeocoderViewportChange}
+                mapboxApiAccessToken={token}
+                position='top-left'
+                limit={5}
+                types={'poi, place'}
+                // countries={countryCode}
+                // proximity={[viewport.longitude,viewport.latitude]}
+                trackProximity={true}
+                />
+
+              <GeolocateControl
+                style={geolocateStyle}
+                positionOptions={{enableHighAccuracy: true}}
+                trackUserLocation={true}
+                />
+                
+              { closeLayer && <CloseLayer closeAllPopups={this.closeAllPopups}/>}
+
+              {spots.length > 0 ? (spots.map((spot, i) => {
+                return (
+                <SpotDot
+                key={spot._id}
+                id={spot._id}
+                latitude={spot.location.coordinates[0]}
+                longitude={spot.location.coordinates[1]}
+                spotName={spot.name}
+                img={spot.img}
+                popupsStatus={popupsStatus}
+                popupsToggle={this.popupsToggle}
+                zoom={viewport.zoom}
+                closeLayerToggle={this.closeLayerToggle}
+                // closeAllPopups={this.closeAllPopups}
+                />)
+              })
+              ) : null
+              }
+
+            </ReactMapGL>
       )
     }
 }

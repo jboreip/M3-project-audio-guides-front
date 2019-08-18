@@ -64,7 +64,7 @@ class Signup extends Component {
         </form> */}
 
         <SignupForm dosignup={this.doSignup}/>
-        <p>Already have account? 
+        <p>Already have an account? 
           <Link to={'/login'}> Login</Link>
         </p>
       </React.Fragment>

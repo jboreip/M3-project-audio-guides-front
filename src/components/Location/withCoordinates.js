@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Loading from '../Loading/Loading';
 
 const withCoordinates = (Comp) => () => {
 
@@ -8,7 +9,9 @@ const [location, setLocation ] = useState([]);
     navigator.geolocation.getCurrentPosition((location) => {
       let newLocation = [];
       newLocation.push(location.coords.latitude, location.coords.longitude)
-      setLocation(newLocation)
+      setTimeout(() => {
+        setLocation(newLocation)
+      }, 1500);
     })
   }, []) 
 
@@ -16,7 +19,7 @@ const [location, setLocation ] = useState([]);
 
   if(location.length === 0){
     return (
-      <p>Loading...</p>
+      <Loading/>
     )
   }else{
     return (
