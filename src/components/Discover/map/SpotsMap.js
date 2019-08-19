@@ -8,7 +8,7 @@ import ReactMapGL, {GeolocateControl} from 'react-map-gl'
 // import { GeoJSONLayer } from "react-mapbox-gl";
 import Geocoder from 'react-map-gl-geocoder';
 // import axios from 'axios';
-import spots from '../../../services/spots-service';
+import spotsService from '../../../services/spots-service';
 import CloseLayer from '../../Discover/map/CloseLayer'
 
 
@@ -21,8 +21,6 @@ const geolocateStyle = {
 };
 
 class SpotsMap extends Component {
-
-
 
   state = { 
     viewport :{
@@ -44,14 +42,14 @@ class SpotsMap extends Component {
   //   })
   // };
 
-  getPlansLocations = async () => {
-  const response = await spots.getSpots();
+  getSpots = async () => {
+  const response = await spotsService.getSpots();
   return response;
   }
 
   componentDidMount(){
     // this.getCurrentCountry();
-    this.getPlansLocations().then((spots) =>{
+    this.getSpots().then((spots) =>{
       const {listOfSpots} = spots
       console.log(spots)
 
