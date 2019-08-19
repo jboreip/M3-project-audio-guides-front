@@ -5,6 +5,7 @@ import Splash from './pages/user/Splash';
 import Navbar from './components/Navigation/Navbar';
 import Discover from './pages/user/Discover';
 import Trips from './pages/user/Trips';
+import NewTrip from './pages/user/NewTrip';
 import Profile from './pages/user/Profile';
 import Signup from './pages/user/Signup';
 import Login from './pages/user/Login';
@@ -24,15 +25,16 @@ class App extends Component {
         <div className='data-container'>
           <Switch>
             <AnonRoute exact path='/' component={Splash} />
-            <AnonRoute path='/signup' component={Signup} />
-            <AnonRoute path='/login' component={Login} />
+            <AnonRoute exact path='/signup' component={Signup} />
+            <AnonRoute exact path='/login' component={Login} />
             {/* si queremos pasar un componente con props utilizamos render en lugar de component y dentro podemos añadir props */}
             {/* <PrivateRoute path='/private' render={() => (
               <Private test='test prop to pass'></Private>
             )} /> */}
-            <PrivateRoute path='/discover' component={Discover} />
-            <PrivateRoute path='/trips' component={Trips} />
-            <PrivateRoute path='/profile' component={Profile} />
+            <PrivateRoute exact path='/discover' component={Discover} />
+            <PrivateRoute exact path='/trips' component={Trips} />
+            <PrivateRoute exact path='/trips/new' component={NewTrip} />
+            <PrivateRoute exact path='/profile' component={Profile} />
           </Switch>
         </div>
         <Navbar />

@@ -4,6 +4,7 @@ class SpotsService {
   constructor() {
     this.spots = axios.create({
       baseURL: process.env.REACT_APP_BACKEND_DOMAIN,
+      withCredentials:true,
     })
   }
 

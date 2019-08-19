@@ -60,8 +60,7 @@ nav ul li a img {
   width:5vh;
 }
 
-
-/* --- Map --- */
+/* --- Loading --- */
 
 .loading{
   position:absolute;
@@ -80,6 +79,7 @@ nav ul li a img {
   transform-origin: bottom center;
   position: relative;
 }
+
 @keyframes loading{
   0%{
     transform: translateY(0px);
@@ -119,6 +119,10 @@ nav ul li a img {
 .circle-8{
   animation-delay: 0.8s;
 } */
+
+
+
+/* --- Discover Map --- */
 
 .spot-marker  img{
 max-width:50px;
@@ -160,4 +164,20 @@ max-width:50px;
   width:100%;
   display:block;
   border-radius: 10px 10px 0px 0px;
+}
+
+
+/* --- Add Trip Map --- */
+
+.trip-map {
+  height:50vh;
+}
+
+.trip-map .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl {
+  margin: 0 0 2.5vw 2.5vw;
+  width: 95vw;
+}
+
+.mapboxgl-ctrl:nth-of-type(2), .mapboxgl-ctrl-bottom-right{
+  display:none!important;
 }

@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
-import LoginForm from '../../components/Forms/user/LoginForm';
+import TripNewForm from '../../components/Forms/user/TripNewForm';
+import tripsService from '../../services/trips-service';
+
 
 // ya no necesitamos el service, ya que los métodos (login, logout, etc.) los hemos pasado con el withAuth como props
 // import auth from '../services/auth-service';
 
-class Login extends Component {
+class NewTrip extends Component {
   state = {
-    email: '',
-    password: '',
+    city: '',
+    location: '',
+    img: '',
+    fromDate: '',
+    toDate: ''
   }
 
-  doLogin = (values) => {
-    const { email, password } = values;
+  createNewTrip = (values) => {
+    const { city, location, img, fromDate, toDate } = values;
+    const currentUser = this.props.user._id
+    tripsService.newTrip({ city, location, img, fromDate, toDate }, currentUser)
+    .then((data) => {
+      console.log(this.props)
+        this.props.user.trips = data.trips;
+        this.props.history.push('/trips');
+      })
+    .catch(error => console.log(error) )
     // ahora en lugar de llamar a auth.login, cogemos el login the this.props
     // auth.login({ email, password })
-    this.props.login({ email, password })
-    .then( (user) => {
-      this.props.history.push('/discover');
-    })
-    .catch( error => console.log(error) )
+    // .this.props.login({ email, password })
+    // .then( (user) => {
+    //   this.props.history.push('/discover');
+    // })
+    // .catch( error => console.log(error) )
   }
 
   handleChange = (event) => {  
@@ -39,13 +52,10 @@ class Login extends Component {
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
         </form> */}
-        <LoginForm doLogin={this.doLogin}/>
-        <p>Don't have an accout yet?
-            <Link to={'/signup'}> Signup</Link>
-        </p>
+        <TripNewForm createNewTrip={this.createNewTrip}/>
       </ React.Fragment>
     )
   }
 }
 
-export default withAuth(Login);
+export default withAuth(NewTrip);

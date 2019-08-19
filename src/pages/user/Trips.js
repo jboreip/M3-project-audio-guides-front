@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
-import spotsService from '../../services/spots-service';
+// import spotsService from '../../services/spots-service';
 import tripsService from '../../services/trips-service';
-import mapboxService from '../../services/mapbox-service';
+// import mapboxService from '../../services/mapbox-service';
 import withCoordinates from '../../components/Location/withCoordinates';
 
 
@@ -14,11 +15,12 @@ class Trips extends Component {
 
   componentDidMount(){
   // trips del usuario
-  console.log(this.props.user.trips)
-  // const userTrips = this.props.user.trips;
-  const userTrips = [1,2,3];
-  this.setState({
-    trips: userTrips
+  tripsService.getUserTrips()
+  .then(response => {
+    console.log(response)
+    this.setState({
+      trips: response.listOfTrips.trips
+    })
   })
   }
 
@@ -27,7 +29,10 @@ class Trips extends Component {
     return (
       <React.Fragment>
         <h1>Trips</h1>
-        {this.state.trips}
+        <Link to={'/trips/new'}> Add Trip</Link>
+        {this.state.trips.map((trip, i) => {
+          return <p key={i}>{trip}</p>
+        })}
       </React.Fragment>
     )
   }

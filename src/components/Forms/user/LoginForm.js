@@ -33,7 +33,7 @@ export default withFormik({
       .required()
   }),
   handleSubmit(values, {props, setSubmitting, setErrors, resetForm})  {
-    props.dologin(values)
+    props.doLogin(values)
     resetForm()
     setSubmitting(false);
   }

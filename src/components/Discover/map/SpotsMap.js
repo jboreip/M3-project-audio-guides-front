@@ -51,6 +51,8 @@ class SpotsMap extends Component {
     // this.getCurrentCountry();
     this.getSpots().then((spots) =>{
       const {listOfSpots} = spots
+    
+      console.log('List of Spots:')
       console.log(spots)
 
       this.setState({
@@ -182,6 +184,7 @@ class SpotsMap extends Component {
                 // countries={countryCode}
                 // proximity={[viewport.longitude,viewport.latitude]}
                 trackProximity={true}
+                collapsed={true}
                 />
 
               <GeolocateControl

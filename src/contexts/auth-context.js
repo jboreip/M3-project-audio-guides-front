@@ -42,6 +42,14 @@ class AuthProvider extends Component {
     })
   }
 
+  // currentUserUpdate = (user) => {
+  //     this.setState({
+  //       user,
+  //       isLoggedIn: true,
+  //       isLoading:false
+  //     })
+  // }
+
   componentDidMount(){
     authService.me()
     .then((user) => {
@@ -73,6 +81,7 @@ class AuthProvider extends Component {
             login: this.userLogin,
             signup: this.userSignup,
             logout: this.userLogout,
+            // updateUserData: this.currentUserUpdate,
           }}>
             {this.props.children}
           </AuthContext.Provider>

@@ -79,7 +79,7 @@ closePopup = () => {
 // }
 
 render(){
-  const { id, latitude, longitude, spotName, img, closePopup, popupChanger, zoom, popupsStatus} = this.props;
+  const { id, latitude, longitude, spotName, img, popupsStatus} = this.props;
   const { showPopup} = this.state;
   return (
     <React.Fragment>
