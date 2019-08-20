@@ -42,16 +42,8 @@ class AuthProvider extends Component {
     })
   }
 
-  // currentUserUpdate = (user) => {
-  //     this.setState({
-  //       user,
-  //       isLoggedIn: true,
-  //       isLoading:false
-  //     })
-  // }
-
-  componentDidMount(){
-    authService.me()
+  getMe = () => {
+    return authService.me()
     .then((user) => {
       this.setState({
         user,
@@ -67,10 +59,21 @@ class AuthProvider extends Component {
       })
     })  
   }
+  // currentUserUpdate = (user) => {
+  //     this.setState({
+  //       user,
+  //       isLoggedIn: true,
+  //       isLoading:false
+  //     })
+  // }
+
+  componentDidMount(){
+    this.getMe();
+  }
 
 
   render() {
-    const {user, isLoggedIn, isLoading} = this.state;
+    const {user, isLoggedIn, isLoading, me} = this.state;
     return (
         <React.Fragment>
           {isLoading ? <p>Loading...</p>
@@ -81,6 +84,7 @@ class AuthProvider extends Component {
             login: this.userLogin,
             signup: this.userSignup,
             logout: this.userLogout,
+            me: this.getMe,
             // updateUserData: this.currentUserUpdate,
           }}>
             {this.props.children}

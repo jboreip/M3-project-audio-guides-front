@@ -11,7 +11,7 @@ import userService from '../../../services/user-service';
 class SpotsDot extends Component {
   state = { 
     showPopup: false,
-    isSaved: false,
+    isSaved: this.props.isSaved,
   }
 
 // togglePopup = () => {
@@ -36,10 +36,6 @@ class SpotsDot extends Component {
 //     })
 //   }
 // }
-
-
-
-
 
 
 togglePopup = () => {
@@ -74,7 +70,10 @@ closePopup = () => {
 }
 
 saveSpot = () => {
-userService.saveSpot(this.props.id);
+userService.saveSpot(this.props.id)
+.then(() => {
+this.props.me();
+})
 if (this.state.isSaved) {
   this.setState({
     isSaved: false,
@@ -113,7 +112,7 @@ render(){
           // width={20*((24-zoom)/24)}
           width={50}
           alt={'marker'}/> */}
-          <Pin size={25} />
+          <Pin size={25} color={isSaved ? 'red':'#6d7bfa'}/>
         </Marker>
       </div>    
       {

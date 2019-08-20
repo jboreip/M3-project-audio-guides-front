@@ -15,7 +15,7 @@ const withAuth = (Comp) => {
             logout={logout}
             signup={signup}
             user={user}
-            // me={me}
+            me={me}
             // Si no hacemos el spread de props, el componente solo recibirá las props del hoc (high order component) en y las props del componente no se pasarán
             {...this.props}
           />

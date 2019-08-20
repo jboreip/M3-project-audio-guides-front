@@ -16,6 +16,7 @@ body {
   --colorPrimary: #6d7bfa;
   --colorSecondary: white;
   --colorDisabled: #dcdcdc;
+  --colorTerciary: #a0a9f8;
   --colorText: #222;
 }
 
@@ -129,7 +130,7 @@ nav ul li a img {
 @keyframes loading{
   0%{
     transform: translateY(0px);
-    background-color: #a0a9f8;
+    background-color: var(--colorTerciary);
   }
   50%{
     transform: translateY(50px);
@@ -137,7 +138,7 @@ nav ul li a img {
   }
   100%{
     transform: translateY(0px);
-    background-color: #a0a9f8;
+    background-color:  var(--colorTerciary);
   }
 }
 .circle-1{
@@ -207,15 +208,18 @@ max-width:50px;
 }
 
 .spot-popup-image img {
-  width:100%;
-  display:block;
+  width: 60vw;
+  height: 25vh;
+  max-width: 250px;
+  display: block;
+  object-fit: cover;
   border-radius: 10px 10px 0px 0px;
 }
 
 .heart-icon {
   position:absolute;
-  right:4vw;
-  top: 4vw;
+  right:20px;
+  top: 20px;
   cursor:pointer;
 }
 

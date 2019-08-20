@@ -9,7 +9,7 @@ class UserService {
   }
 
   saveSpot(id){
-    return this.user.put(`/user/spots/${id}/change`)
+    return this.user.put(`/user/spots/${id}/switch`)
     .then(response => response.data)
   }
 }

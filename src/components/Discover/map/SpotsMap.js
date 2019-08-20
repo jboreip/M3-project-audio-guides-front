@@ -2,6 +2,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import React, { Component } from 'react'
 import withCoordinates from '../../Location/withCoordinates';
+import withAuth from '../../../components/Auth/withAuth';
 import SpotDot from '../../Discover/map/SpotDot';
 // import MapGL from 'react-map-gl'
 import ReactMapGL, {GeolocateControl} from 'react-map-gl'
@@ -33,6 +34,7 @@ class SpotsMap extends Component {
     spots: [],
     popupsStatus:false,
     closeLayer: false,
+    userSavedSpots: []
   }
 
   // getCurrentCountry = async () => {
@@ -47,21 +49,21 @@ class SpotsMap extends Component {
   return response;
   }
 
+
   componentDidMount(){
     // this.getCurrentCountry();
+    const userSavedSpots = this.props.user.spots
     this.getSpots().then((spots) =>{
+      this.props.me();
       const {listOfSpots} = spots
-    
-      console.log('List of Spots:')
-      console.log(spots)
-
       this.setState({
         viewport:{
           latitude: this.props.location[0],
           longitude: this.props.location[1],
           zoom: 13
         },
-        spots: listOfSpots
+        spots: listOfSpots,
+        userSavedSpots: userSavedSpots
       })
     })
   }
@@ -152,7 +154,7 @@ class SpotsMap extends Component {
 
 
     render(){
-      const { viewport, style, spots, popupsStatus, closeLayer} = this.state
+      const { viewport, style, spots, popupsStatus, closeLayer, userSavedSpots } = this.state
       
       return (
             <ReactMapGL 
@@ -196,6 +198,10 @@ class SpotsMap extends Component {
                 
 
               {spots.length > 0 ? (spots.map((spot, i) => {
+                let isSaved = false;
+                if(userSavedSpots.includes(spot._id)){
+                  isSaved = true;
+                }
                 return (
                 <SpotDot
                 key={spot._id}
@@ -208,6 +214,7 @@ class SpotsMap extends Component {
                 popupsToggle={this.popupsToggle}
                 zoom={viewport.zoom}
                 closeLayerToggle={this.closeLayerToggle}
+                isSaved={isSaved}
                 {...this.props}
                 // closeAllPopups={this.closeAllPopups}
                 >
@@ -223,4 +230,4 @@ class SpotsMap extends Component {
     }
 }
 
-export default withCoordinates(SpotsMap);
+export default withCoordinates(withAuth(SpotsMap));
