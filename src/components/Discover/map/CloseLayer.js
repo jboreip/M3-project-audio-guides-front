@@ -4,7 +4,6 @@ const CloseLayer = (props) => {
   return (
     <>
     <div className='close-layer' onClick={props.closeAllPopups}>
-      
     </div>
     </>
   )

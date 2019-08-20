@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 
 const locationCookie = new Cookies();
 
-const withCoordinates = (Comp) => () => {
+const withCoordinates = (Comp) => (props) => {
 
   const [location, setLocation ] = useState([]);
   
@@ -19,29 +19,31 @@ const withCoordinates = (Comp) => () => {
       console.log('Got location from cookie:\nLat: ' + currentLocation[0] + ' | Lon: ' + currentLocation[1])
       // console.log('got location from local storage');
     } else {
-      navigator.geolocation.getCurrentPosition((location) => {
-        console.log('Query to navigator done')
-        const {latitude, longitude} = location.coords;
-        let newLocation = [];
-        newLocation.push(latitude, longitude)
-        console.log('Got location from user:\nLat: ' + latitude + ' | Lon: ' + longitude)
-          setLocation(newLocation);
-          locationCookie.set('userLocation', newLocation, { path: '/', maxAge: (60*60*1) });
-          // ls.set('userLocation', newLocation)
-      })
+      setTimeout(() => {
+        navigator.geolocation.getCurrentPosition((location) => {
+          console.log('Query to navigator done')
+          const {latitude, longitude} = location.coords;
+          let newLocation = [];
+          newLocation.push(latitude, longitude)
+          console.log('Got location from user:\nLat: ' + latitude + ' | Lon: ' + longitude)
+            setLocation(newLocation);
+            locationCookie.set('userLocation', newLocation, { path: '/', maxAge: (60*60*1) });
+            // ls.set('userLocation', newLocation)
+        })
+      }, 1500);
     }
   }, []) 
   
   
-  if(location.length > 0){
+  if(location.length === 0){
     return (
-      <React.Fragment>
-        <Comp location={location}/>
-      </React.Fragment>
+      <Loading {...props}/>
     )
   }else{
     return (
-      <Loading/>
+      <React.Fragment>
+        <Comp location={location} {...props}/>
+      </React.Fragment>
     )
   }
 

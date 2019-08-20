@@ -8,7 +8,7 @@ class Discover extends Component {
   render() {
     return (
       <React.Fragment>
-        <SpotsMap />
+        <SpotsMap props={this.props}/>
       </React.Fragment>
     )
   }

@@ -46,6 +46,7 @@ Now you can do it! With XXXXX (name pending) you will be able to listen high qua
 - User can add a comment to a Spot
 - User can view other users comments and interact with them
 - User has Spots/Trips recommendations based on other Users actions
+– Beautiful calendar selector done with React
 
 <br>
 

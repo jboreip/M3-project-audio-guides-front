@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import withAuth from '../../components/Auth/withAuth';
 import TripNewForm from '../../components/Forms/user/TripNewForm';
 import tripsService from '../../services/trips-service';
-
+import flickrService from '../../services/flickr-service';
 
 // ya no necesitamos el service, ya que los métodos (login, logout, etc.) los hemos pasado con el withAuth como props
 // import auth from '../services/auth-service';
@@ -11,21 +11,44 @@ import tripsService from '../../services/trips-service';
 class NewTrip extends Component {
   state = {
     city: '',
-    location: '',
+    country: '',
+    location: [],
     img: '',
     fromDate: '',
-    toDate: ''
+    toDate: '',
+    formDisabled:true,
   }
 
+  getLocationFromMap = (city, country, newLocation, formDisabled) => {
+    this.setState({
+      city,
+      country,
+      location: newLocation,
+      formDisabled: formDisabled
+    })
+  }
+
+
+
   createNewTrip = (values) => {
-    const { city, location, img, fromDate, toDate } = values;
-    const currentUser = this.props.user._id
-    tripsService.newTrip({ city, location, img, fromDate, toDate }, currentUser)
-    .then((data) => {
-      console.log(this.props)
-        this.props.user.trips = data.trips;
-        this.props.history.push('/trips');
+    const { fromDate, toDate } = values;
+    const { city, country, location } = this.state;
+    flickrService.getCityImage(location[0],location[1])
+    .then((photo) => {
+      const {id, farm, server, secret } = photo;
+      const cityImage = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`
+      this.setState({
+        img: cityImage
       })
+    })
+    .then(() => {
+      const { img } = this.state;
+      tripsService.newTrip({ city, country, location, img, fromDate, toDate })
+      .then((data) => {
+          this.props.user.trips = data.trips;
+          this.props.history.push('/trips');
+        })
+    })
     .catch(error => console.log(error) )
     // ahora en lugar de llamar a auth.login, cogemos el login the this.props
     // auth.login({ email, password })
@@ -52,7 +75,8 @@ class NewTrip extends Component {
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
         </form> */}
-        <TripNewForm createNewTrip={this.createNewTrip}/>
+        {/* <div className='trip-map'><TripMap getCoordsFromMap={this.getCoordsFromMap}>{this.props.children}</TripMap></div> */}
+        <TripNewForm createNewTrip={this.createNewTrip} getLocationFromMap={this.getLocationFromMap} formDisabled={this.state.formDisabled}/>
       </ React.Fragment>
     )
   }

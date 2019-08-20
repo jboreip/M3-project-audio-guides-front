@@ -14,8 +14,8 @@ class TripsService {
   }
 
   newTrip(trip, user) {
-    const { city, location, img, fromDate, toDate } = trip;
-    return this.trips.post('/trips/new/', { city, location, img, fromDate, toDate, user })
+    const { city, country, location, img, fromDate, toDate } = trip;
+    return this.trips.post('/trips/new/', { city, country, location, img, fromDate, toDate, user })
     .then((response => response.data))
   }
 

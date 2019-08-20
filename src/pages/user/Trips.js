@@ -17,7 +17,6 @@ class Trips extends Component {
   // trips del usuario
   tripsService.getUserTrips()
   .then(response => {
-    console.log(response)
     this.setState({
       trips: response.listOfTrips.trips
     })
@@ -27,13 +26,24 @@ class Trips extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>Trips</h1>
-        <Link to={'/trips/new'}> Add Trip</Link>
+      <section className='card-container'>
+        <div className='header'>
+        <p className='title'>Upcoming Trips</p>
+        <Link to={'/trips/new'} className='add-trip'>+</Link>
+        </div>
+        <section className='scroll-wrapper'>
         {this.state.trips.map((trip, i) => {
-          return <p key={i}>{trip}</p>
+          return (
+          <div className='card' key={i}>
+          <img src={trip.img} alt={trip.city}/>
+          <span>{trip.city}</span>
+          {/* <p>{trip.toDate}</p>
+          <p>{trip.fromDate}</p> */}
+          </div>
+          )
         })}
-      </React.Fragment>
+        </section>
+      </section>
     )
   }
 }

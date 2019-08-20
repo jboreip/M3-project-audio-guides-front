@@ -12,12 +12,20 @@ body {
   padding: 0;
 }
 
+:root {
+  --colorPrimary: #6d7bfa;
+  --colorSecondary: white;
+  --colorDisabled: #dcdcdc;
+  --colorText: #222;
+}
 
 /* ---- typography ---- */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700&display=swap');
+
 body {
-  color: #111;
-  font-family: Helvetica, Arial, sans-serif;
+  color: var(--colorText);
+  font-family: 'Roboto Mono', monospace;
   font-size: 16px;
 }
 
@@ -33,6 +41,7 @@ p {
 
 .data-container {
   height: 92vh;
+  text-align: center;
 }
 
 
@@ -60,6 +69,43 @@ nav ul li a img {
   width:5vh;
 }
 
+
+/* --- Buttons --- */
+
+.btn {
+  width: 80vw;
+  min-height: 70px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px -10px var(--colorPrimary);
+  font-size: 1.5em;
+  margin: 0 auto;
+  display: block;
+}
+
+.btn-primary {
+  color: var(--colorSecondary);
+  background-color: var(--colorPrimary);
+  font-weight: 300;
+}
+
+.btn-disabled {
+  color: var(--colorSecondary);
+  background-color: var(--colorDisabled);
+  box-shadow: none;
+  border:none;
+}
+
+.add {
+  margin-top:15px;
+  display:block;
+}
+
+.cancel {
+  margin-top:25px;
+  display:block;
+}
+
+
 /* --- Loading --- */
 
 .loading{
@@ -73,7 +119,7 @@ nav ul li a img {
   margin-right:5px;
   width: 15px;
   height: 15px;
-  background-color: #fcdc29;
+  background-color: var(--colorPrimary);
   border-radius: 50%;
   animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
   transform-origin: bottom center;
@@ -83,15 +129,15 @@ nav ul li a img {
 @keyframes loading{
   0%{
     transform: translateY(0px);
-    background-color: #fcdc29;
+    background-color: #a0a9f8;
   }
   50%{
     transform: translateY(50px);
-    background-color: #ef584a;
+    background-color: var(--colorPrimary);
   }
   100%{
     transform: translateY(0px);
-    background-color: #fcdc29;
+    background-color: #a0a9f8;
   }
 }
 .circle-1{
@@ -166,18 +212,129 @@ max-width:50px;
   border-radius: 10px 10px 0px 0px;
 }
 
+.heart-icon {
+  position:absolute;
+  right:4vw;
+  top: 4vw;
+  cursor:pointer;
+}
+
+.heart-icon.true svg {
+  fill:red;
+}
+
+.heart-icon.false svg {
+  fill:white;
+  /* stroke-linecap:round; */
+}
+
+.mapboxgl-popup {
+  z-index:1;
+}
 
 /* --- Add Trip Map --- */
 
 .trip-map {
-  height:50vh;
+  height:51vh;
+  border-bottom: 5px solid var(--colorPrimary);
 }
 
-.trip-map .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl {
-  margin: 0 0 2.5vw 2.5vw;
-  width: 95vw;
+.trip-map .mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+  margin: 2vh 5vw;
+  width: 90vw;
+}
+
+.trip-map .mapboxgl-ctrl-geocoder--input {
+  font-family: RobotoMono, monospace;
+  font-size: 1em;
+  box-shadow: 0 10px 11px -10px var(--colorPrimary);
 }
 
 .mapboxgl-ctrl:nth-of-type(2), .mapboxgl-ctrl-bottom-right{
   display:none!important;
+}
+
+.new-trip input {
+  width: 44vw;
+  margin: 3vh 2vw;
+  font-size: 1.04em;
+  border-radius: 8px;
+  border: solid 1px var(--colorPrimary);
+  height: 6vh;
+  padding: 10px;
+}
+
+.new-trip input:disabled{
+  color: var(--colorDisabled);
+  background-color: var(--colorSecondary);
+  border-color:var(--colorDisabled);
+}
+
+/* --- Cards --- */
+
+.card-container {
+  padding-top: 5vh;
+}
+
+.card-container .header{
+  display: flex;
+  padding: 0 4vw;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.card-container .header .title{
+  font-size: 1.6em;
+}
+
+.card-container .header .add-trip{
+  background-color: var(--colorPrimary);
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: var(--colorSecondary);
+  font-weight: bold;
+  font-size: 35px;
+  cursor:pointer;
+}
+
+
+.scroll-wrapper {
+  display: flex;
+  overflow-x: scroll;
+  margin-top:20px;
+}
+
+
+.scroll-wrapper .card {
+  margin-left:4vw;
+  position: relative;
+  scroll-snap-align: center;
+}
+
+.scroll-wrapper .card img {
+width: 50vw;
+height:30vh;
+border-radius: 10px;
+-o-object-fit: cover;
+object-fit: cover;
+}
+
+.scroll-wrapper .card span {
+  color: var(--colorSecondary);
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  font-size: 20px;
+}
+
+.scroll-wrapper .card:last-of-type {
+  padding-right:4vw;
 }

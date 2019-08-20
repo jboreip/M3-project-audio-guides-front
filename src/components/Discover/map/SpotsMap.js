@@ -180,9 +180,10 @@ class SpotsMap extends Component {
                 mapboxApiAccessToken={token}
                 position='top-left'
                 limit={5}
-                types={'poi, place'}
+                types={'place'}
                 // countries={countryCode}
-                // proximity={[viewport.longitude,viewport.latitude]}
+                language='en'
+                proximity={{longitude: viewport.longitude, latitude: viewport.latitude}}
                 trackProximity={true}
                 collapsed={true}
                 />
@@ -193,7 +194,6 @@ class SpotsMap extends Component {
                 trackUserLocation={true}
                 />
                 
-              { closeLayer && <CloseLayer closeAllPopups={this.closeAllPopups}/>}
 
               {spots.length > 0 ? (spots.map((spot, i) => {
                 return (
@@ -208,11 +208,15 @@ class SpotsMap extends Component {
                 popupsToggle={this.popupsToggle}
                 zoom={viewport.zoom}
                 closeLayerToggle={this.closeLayerToggle}
+                {...this.props}
                 // closeAllPopups={this.closeAllPopups}
-                />)
+                >
+                 </SpotDot> )
               })
               ) : null
-              }
+            }
+
+            { closeLayer && <CloseLayer closeAllPopups={this.closeAllPopups}/>}
 
             </ReactMapGL>
       )

@@ -34,6 +34,8 @@ class TripMap extends Component {
   //   })
   // };
 
+  
+
   componentDidMount(){
     this.setState({
       viewport:{
@@ -45,11 +47,6 @@ class TripMap extends Component {
     
   }
 
-
-
-
-
-  
   mapRef = React.createRef()
 
   handleViewportChange = viewport => {
@@ -69,35 +66,41 @@ class TripMap extends Component {
   };
 
 
-  logDragEvent(name, event) {
-    this.setState({
-      events: {
-        ...this.state.events,
-        [name]: event.lngLat
-      }
-    });
-  }
+  // logDragEvent(name, event) {
+  //   this.setState({
+  //     events: {
+  //       ...this.state.events,
+  //       [name]: event.lngLat
+  //     }
+  //   });
+  // }
 
-  onMarkerDragStart = event => {
-    this.logDragEvent('onDragStart', event);
-  };
+  // onMarkerDragStart = event => {
+  //   this.logDragEvent('onDragStart', event);
+  // };
 
-  onMarkerDrag = event => {
-    this.logDragEvent('onDrag', event);
-  };
+  // onMarkerDrag = event => {
+  //   this.logDragEvent('onDrag', event);
+  // };
 
-  onMarkerDragEnd = event => {
-    this.logDragEvent('onDragEnd', event);
-    this.setState({
-      marker: {
-        longitude: event.lngLat[0],
-        latitude: event.lngLat[1]
-      }
-    });
-  };
-
+  // onMarkerDragEnd = event => {
+  //   this.logDragEvent('onDragEnd', event);
+  //   this.setState({
+  //     marker: {
+  //       longitude: event.lngLat[0],
+  //       latitude: event.lngLat[1]
+  //     }
+  //   });
+  // };
+  
   handleOnResult = event => {
+    const city = event.result.text_en;
+    const country = event.result.context[(event.result.context.length-1)].text_en;
     const [...resultLocation] = event.result.center;
+    const formDisabled = false;
+    this.props.getLocationFromMap(city, country, resultLocation, formDisabled);
+    // console.log(this.props)
+    // this.props.getCoordsFromMap(resultLocation);
     // let viewportCopy = this.state.viewport;
     // viewportCopy.zoom = 19;
     this.setState({
@@ -132,11 +135,12 @@ class TripMap extends Component {
                 onResult={this.handleOnResult}
                 onViewportChange={this.handleGeocoderViewportChange}
                 mapboxApiAccessToken={token}
-                position='bottom-left'
+                position='top-left'
                 limit={3}
                 types={'place'}
                 trackProximity={true}
                 minLength={4}
+                language='en'
                 placeholder={'Where do you wanna go?'}
                 />
 
