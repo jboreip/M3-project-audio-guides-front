@@ -13,6 +13,11 @@ class SpotsService {
     .then(response => response.data)
   }
 
+  getSpot(id) {
+    return this.spots.get(`/spots/${id}`)
+    .then(response => response.data)
+  }
+
 }
 
 const spotsService = new SpotsService();

@@ -18,7 +18,8 @@ const token = 'pk.eyJ1IjoicGllcm9iaiIsImEiOiJjanlpbjYxYXEwMDg3M21yeHhiYzZvbGh1In
 const geolocateStyle = {
   float: 'right',
   margin: '10px',
-  padding: '10px'
+  padding: '10px',
+  boxShadow: '0 0 10px 2px rgba(0,0,0,.1)'
 };
 
 class SpotsMap extends Component {
@@ -30,7 +31,7 @@ class SpotsMap extends Component {
       zoom: 13
     },
     countryCode: '',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/pierobj/cjzka0a4y088s1cnzqdw79v0g',
     spots: [],
     popupsStatus:false,
     closeLayer: false,

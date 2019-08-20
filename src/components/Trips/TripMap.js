@@ -24,7 +24,7 @@ class TripMap extends Component {
     },
     events: {},
     showMarker: false,
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/pierobj/cjzka0a4y088s1cnzqdw79v0g',
   }
 
   // getCurrentCountry = async () => {

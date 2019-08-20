@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
 import LoginForm from '../../components/Forms/user/LoginForm';
+import Logo from '../../components/Logo/Logo';
 
 // ya no necesitamos el service, ya que los métodos (login, logout, etc.) los hemos pasado con el withAuth como props
 // import auth from '../services/auth-service';
@@ -31,7 +32,7 @@ class Login extends Component {
   render() {
     // const { email, password } = this.state;
     return (
-      <React.Fragment>
+      <div className='log-sign-container'>
         {/* <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='email' >Email:</label>
           <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
@@ -39,11 +40,12 @@ class Login extends Component {
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
         </form> */}
+        <Logo height='30vw' width='30vw' fill='#6d7bfa' stroke=''/>
         <LoginForm doLogin={this.doLogin}/>
         <p>Don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
         </p>
-      </ React.Fragment>
+      </div>
     )
   }
 }

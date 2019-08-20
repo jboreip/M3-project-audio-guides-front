@@ -112,7 +112,7 @@ render(){
           // width={20*((24-zoom)/24)}
           width={50}
           alt={'marker'}/> */}
-          <Pin size={25} color={isSaved ? 'red':'#6d7bfa'}/>
+          <Pin size={25} color={isSaved ? '#ff6767':'#6d7bfa'}/>
         </Marker>
       </div>    
       {

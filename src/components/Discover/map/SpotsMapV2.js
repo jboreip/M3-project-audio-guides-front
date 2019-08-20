@@ -34,7 +34,7 @@ class SpotsMap extends Component {
 
         
         <Map
-        style='mapbox://styles/mapbox/streets-v9'
+        style='mapbox://styles/pierobj/cjzk9senk09h71cqwnrv39zne'
         containerStyle={{
           height: '92vh',
           width: '100vw'

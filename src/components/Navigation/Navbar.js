@@ -5,18 +5,20 @@ import withAuth from '../../components/Auth/withAuth';
 class Navbar extends Component {
   render () {
     return (
+      <div className='nav-container'>
       <nav>
         <ul>
           {this.props.isLoggedIn ? (
           <React.Fragment>
-            <li><Link to='/trips'><img src={'/images/airplane-v2.png'} alt='Trips'/></Link></li>
-            <li><Link to='/discover'><img src={'/images/find-v2.png'} alt='Discover'/></Link></li>
-            <li><Link to='/profile'><img src={'/images/user.png'} alt='Trips'/></Link></li>
+            <li><Link to='/trips'><img src={'/images/trips.svg'} alt='Trips'/>Trips</Link></li>
+            <li><Link to='/discover'><img src={'/images/discover.svg'} alt='Discover'/>Discover</Link></li>
+            <li><Link to='/profile'><img src={'/images/profile.svg'} alt='Trips'/>Profile</Link></li>
           </React.Fragment>
           ) : null
         }
         </ul>
       </nav>
+      </div>
     );
   }
 }
