@@ -18,6 +18,7 @@ body {
   --colorDisabled: #dcdcdc;
   --colorTerciary: #a0a9f8;
   --colorQuartary: #eff1ff;
+  --colorQuinatry: #f9f9ff;
   --colorText: #222;
 }
 
@@ -559,3 +560,53 @@ margin: 20px 0 0 0;
   right: 0;
   position: absolute;
 }
+
+
+/* --- Trips --- */
+.trip-container header {
+  text-align: left;
+  padding: 4vh 5vw;
+  background-color: var(--colorQuinatry);
+}
+
+.trip-container header h2 {
+margin:0;
+}
+
+
+.trip-container .pad-container {
+  padding: 4vh 0 14vh 0;
+}
+
+.grid-container {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  padding: 0 2vw;
+}
+
+.grid-container .spot-card {
+  width:48vw;
+  position: relative;
+  margin-bottom:20px;
+}
+
+.grid-container .spot-card img{
+  width: 42vw;
+  height: 25vh;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
+}
+
+.grid-container .spot-card span{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  color:var(--colorSecondary);
+  font-size:12px;
+  padding:0 3vw;
+  text-shadow: 0px 1px 3px var(--colorText);
+}
+

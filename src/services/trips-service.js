@@ -13,6 +13,11 @@ class TripsService {
     .then(response => response.data)
   }
 
+  getTrip(id) {
+    return this.trips.get(`/trips/${id}`)
+    .then(response => response.data)
+  }
+
   newTrip(trip, user) {
     const { city, country, location, img, fromDate, toDate } = trip;
     return this.trips.post('/trips/new/', { city, country, location, img, fromDate, toDate, user })

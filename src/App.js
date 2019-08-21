@@ -13,6 +13,7 @@ import AuthProvider from './contexts/auth-context'
 import PrivateRoute from './components/Routes/PrivateRoute';
 import AnonRoute from './components/Routes/AnonRoute';
 import SpotDetails from './components/Spots/SpotDetails'
+import TripDetails from './components/Trips/TripDetails'
 
 import './App.css';
 // import 'milligram';
@@ -37,6 +38,7 @@ class App extends Component {
             <PrivateRoute exact path='/trips/new' component={NewTrip} />
             <PrivateRoute exact path='/profile' component={Profile} />
             <PrivateRoute path='/spots/:id' component={SpotDetails} />
+            <PrivateRoute path='/trips/:id' component={TripDetails} />
           </Switch>
         </div>
         <PrivateRoute component={Navbar} />

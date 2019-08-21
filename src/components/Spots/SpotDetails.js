@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withAuth from '../../components/Auth/withAuth';
 import spotsService from '../../services/spots-service.js'
 import Loading from '../Loading/Loading';
-import AudioPlayer from '../../components/Audio/AudioPlayer'
+import SpotPlayer from '../../components/Spots/SpotPlayer'
 
 class SpotDetails extends Component {
   
@@ -33,7 +33,7 @@ class SpotDetails extends Component {
           <img src={img} alt={name}/>
           <section className='pad-container'>
           <p>{description}</p>
-          <AudioPlayer src={audioFile}/>
+          <SpotPlayer src={audioFile}/>
           </section>
         </section>
         )

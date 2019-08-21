@@ -34,12 +34,12 @@ class Trips extends Component {
         <section className='scroll-wrapper'>
         {this.state.trips.map((trip, i) => {
           return (
-          <div className='card' key={i}>
+          <Link className='card' key={i} to={`/trips/${trip._id}`}>
           <img src={trip.img} alt={trip.city}/>
           <span>{trip.city}</span>
           {/* <p>{trip.toDate}</p>
           <p>{trip.fromDate}</p> */}
-          </div>
+          </Link>
           )
         })}
         </section>

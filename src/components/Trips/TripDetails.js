@@ -1,0 +1,53 @@
+import React, { Component } from 'react'
+import withAuth from '../../components/Auth/withAuth';
+import tripsService from '../../services/trips-service.js'
+import Loading from '../Loading/Loading';
+import TripSpots from '../Trips/TripSpots';
+import Moment from 'react-moment';
+
+class TripDetails extends Component {
+  
+  state = {
+    trip: {}
+  }
+  
+  componentDidMount(){
+    const {id} = this.props.match.params;
+    tripsService.getTrip(id)
+    .then((trip) => {
+      this.setState({
+        trip,
+      })
+    })
+    .catch((e) => {
+      console.error(e) 
+    })
+  }
+
+
+  render() {
+    const { trip } = this.state;
+    if(trip){
+      const { city, fromDate, toDate } = this.state.trip;
+        return (
+        <section className='trip-container'>
+          <header>
+          <h2>{city}</h2>
+          
+          <p><Moment format="DD/MM">{fromDate}</Moment> – <Moment format="DD/MM/YYYY">{toDate}</Moment></p>
+          </header>
+          {/* <img src={img} alt={name}/> */}
+          <section className='pad-container'>
+          <TripSpots currentTrip={this.state.trip}/>
+          </section>
+        </section>
+        )
+      }else{
+        return (
+          <Loading/>
+        )
+      }
+  }
+}
+
+export default withAuth(TripDetails);
