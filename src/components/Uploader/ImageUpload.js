@@ -47,7 +47,6 @@ class FileUploadComponent extends Component {
         <form className='image-uploader-form'>
           <label>
             <span>Change</span>
-            {/* Upload profile image: */}
           {/* {isUploading && <p>Progress: {progress}</p>} */}
           <FileUploader
             accept="image/*"

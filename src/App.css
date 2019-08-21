@@ -15,6 +15,7 @@ body {
 :root {
   --colorPrimary: #6d7bfa;
   --colorSecondary: white;
+  --colorAlternate: #ff6767;
   --colorDisabled: #dcdcdc;
   --colorTerciary: #a0a9f8;
   --colorQuartary: #eff1ff;
@@ -36,6 +37,24 @@ p {
   margin: 0;
 }
 
+/* --- Errors --- */
+
+.error-message{
+  color: var(--colorAlternate);
+  font-size: 0.8em;
+}
+
+.error-message:before{
+  content: '';
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: 20px 20px;
+  background-image: url(/images/warning.svg);
+  background-repeat: no-repeat;
+  vertical-align: -5px;
+  margin-right:7px;
+}
 
 /* --- Container --- */
 .container {
@@ -58,8 +77,8 @@ input:disabled{
   border-color:var(--colorDisabled);
 }
 
-input {
-  font-size: 1.04em;
+input, select {
+  font-size: 0.9em;
   border-radius: 8px;
   border: solid 1px var(--colorTerciary);
   height: 6vh;
@@ -68,8 +87,9 @@ input {
   color: var(--colorPrimary)
 }
 
-input::placeholder{
-  color: var(--colorPrimary)
+input::placeholder, select::placeholder{
+  color: var(--colorPrimary);
+  font-size:0.9em;
 }
 
 /* --- Nav --- */
@@ -292,6 +312,19 @@ nav ul li a img {
 
 .log-sign-container input {
   margin:10px 0;
+}
+
+.log-sign-container input[name="birthdate"] {
+  width: 65%;
+  margin-right: 5%;
+}
+
+.log-sign-container select[name="language"] {
+  width: 30%;
+}
+
+.log-sign-container label {
+  display:none;
 }
 
 .log-sign-container .alternative {
@@ -571,6 +604,10 @@ margin: 20px 0 0 0;
 
 .trip-container header h2 {
 margin:0;
+}
+
+.trip-container header p {
+  font-size: 13px;
 }
 
 

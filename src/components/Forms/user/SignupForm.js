@@ -7,58 +7,53 @@ const SignupForm = ({values, errors, touched, isSubmitting, ...props}) => {
   return (
       <Form>
         <label htmlFor='email'>Email:</label>
-        <Field id='email' type='email' name='email'/>
-        {errors.email && touched.email && <p>{errors.email}</p>}
+        <Field id='email' type='email' name='email' placeholder='Your email'/>
+        {errors.email && touched.email && <p className='error-message'>{errors.email}</p>}
         <label htmlFor='password'>Password:</label>
-        <Field id='password' type='password' name='password'/>
-        {errors.password && touched.password && <p>{errors.password}</p>}
+        <Field id='password' type='password' name='password' placeholder='Password (min 8 char.)'/>
+        {errors.password && touched.password && <p className='error-message'>{errors.password}</p>}
         <label htmlFor='name'>Name:</label>
-        <Field id='name' type='text' name='name' />
-        {errors.name && touched.name && <p>{errors.name}</p>}
+        <Field id='name' type='text' name='name' placeholder='Your name'/>
+        {errors.name && touched.name && <p className='error-message'>{errors.name}</p>}
+        <div>
         <label htmlFor='birthdate'>Birthdate:</label>
         <Field id='birthdate' type='date' name='birthdate' />
-        {errors.birthdate && touched.birthdate && <p>{errors.birthdate}</p>}
-        <label htmlFor='city'>City:</label>
-        <Field id='city' type='text' name='city' />
-        {errors.city && touched.city && <p>{errors.city}</p>}
         <label htmlFor='language'>Language:</label>
         <Field component='select' id='language' name='language'>
-          <option value='' disabled>Select your language:</option> 
+          <option value='' disabled>Language</option> 
           <option value='EN'>EN</option> 
           <option value='ES'>ES</option> 
         </Field>
-        {errors.language && touched.language && <p>{errors.language}</p>}
-        <button disabled={isSubmitting && true} type='submit'> submit </button>
+        </div>
+        {errors.birthdate && touched.birthdate && <p className='error-message'>{errors.birthdate}</p>}
+        {errors.language && touched.language && <p className='error-message'>{errors.language}</p>}
+        <button disabled={isSubmitting && true} className='btn btn-primary' type='submit'> Signup </button>
       </Form>
   );
 }
 
 export default withFormik({
-  mapPropsToValues({email, password, name, birthdate, city, language}) {
+  mapPropsToValues({email, password, name, birthdate, language}) {
     return ({
       email: email || '',
       password: password || '',
       name: name || '',
       birthdate: birthdate || '',
-      city: city || '',
       language: language || ''
     })
   },
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .email('Please provide a valid e-mail')
-      .required(),
+      .email('Please provide a valid one...')
+      .required('Please provide your e-mail'),
     password: Yup.string()
-      .min(8)
+      .min(8, '8 characters please...')
       .required('Password is required'),
     name: Yup.string()
       .min(2)
-      .required(),
+      .required('Name is required'),
     birthdate: Yup.date()
-      .required(),
-    city: Yup.string()
-      .min(4)
-      .required(),
+      .required('Birthdate is required'),
     language: Yup.string()
       .oneOf(['EN', 'ES', 'CN', 'HD', 'RS', 'PT', 'JP', 'AR'])
       .min(1)

@@ -37,8 +37,6 @@ class Trips extends Component {
           <Link className='card' key={i} to={`/trips/${trip._id}`}>
           <img src={trip.img} alt={trip.city}/>
           <span>{trip.city}</span>
-          {/* <p>{trip.toDate}</p>
-          <p>{trip.fromDate}</p> */}
           </Link>
           )
         })}

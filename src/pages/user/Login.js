@@ -44,7 +44,7 @@ class Login extends Component {
         <h1 className='logo-text'><span>City</span><span>Sounds</span></h1>
         <LoginForm doLogin={this.doLogin}/>
 
-        <p className='alternative'>Don't have an accout yet? <Link to={'/signup'}>Signup</Link></p>
+        <p className='alternative'>Don't have an account yet? <Link to={'/signup'}>Signup</Link></p>
         <p className='legal'>2109 © City Sounds. All rights reserved.</p>
       </div>
     )
