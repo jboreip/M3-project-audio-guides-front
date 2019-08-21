@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import authService from '../services/auth-service'
-import Loading from '../Loading/Loading';
+import Loading from '../components/Loading/Loading.js';
 
 
 export const AuthContext = React.createContext();
