@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import authService from '../services/auth-service'
+import Loading from '../Loading/Loading';
+
 
 export const AuthContext = React.createContext();
 
@@ -75,7 +77,7 @@ class AuthProvider extends Component {
     const {user, isLoggedIn, isLoading, me} = this.state;
     return (
         <React.Fragment>
-          {isLoading ? <p>Loading...</p>
+          {isLoading ? <Loading {...props}/>
           :
           <AuthContext.Provider value={{
             user,
