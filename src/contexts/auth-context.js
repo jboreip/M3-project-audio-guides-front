@@ -77,7 +77,7 @@ class AuthProvider extends Component {
     const {user, isLoggedIn, isLoading, me} = this.state;
     return (
         <React.Fragment>
-          {isLoading ? <Loading {...props}/>
+          {isLoading ? <Loading/>
           :
           <AuthContext.Provider value={{
             user,
