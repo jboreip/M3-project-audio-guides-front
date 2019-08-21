@@ -1,13 +1,13 @@
 
-# City Audio Guides
+# City Sounds
 
+![City Sounds](https://imgur.com/Di7HdjE)
 
-
-## Description XXXXX (name pending)
+## Description
 
 So you finally got some time to travel, right? Yay! And there is no better way to discover a new place than doing a guided tour. But I know, you are tired of ~~shitty~~ city tours; having to wakeup at 7am to join a group of random peoppe with differnt interests than yours, with a fixed route and spots you are not interested at all... What if you could discover the city at your own pace, whenever and however you want to, by visitting only what truly interests you?
 
-Now you can do it! With XXXXX (name pending) you will be able to listen high quality audio guides of all your favourite spots from all over the world, create your own routes based in your interests and preferences, and discover new cities with total freedom.
+Now you can do it! With City<b>Sounds</b> you will be able to listen high quality audio guides of all your favourite spots from all over the world, create your own routes based in your interests and preferences, and discover new cities with total freedom.
 
 ## User Stories
 
@@ -259,18 +259,17 @@ Spot model
 
 [Link to your trello board](https://trello.com/) 
 
+
 ### Git
 
-The url to your repository and to your deployed project
 
-[Client repository Link](https://github.com/screeeen/project-client)
+[Client repository Link](https://github.com/pierobj/M3-project-audio-guides-front)
 
-[Server repository Link](https://github.com/screeeen/project-server)
+[Server repository Link](https://github.com/pierobj/M3-project-audio-guides-back)
 
-[Deployed App Link](http://heroku.com)
+[Deployed App Link](https://city-audio-guides.firebaseapp.com)
+
 
 ### Slides
 
-The url to your presentation slides
-
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1APef4USG_afIEgBJ4H7nYLFUe8mHOZUxqTYDSKKKV3A/edit?usp=sharing)
