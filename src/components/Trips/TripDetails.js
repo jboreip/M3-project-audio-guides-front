@@ -25,19 +25,26 @@ class TripDetails extends Component {
     })
   }
 
+  deleteTrip = (id) => {
+    tripsService.deleteTrip(id)
+    .then((response) => {
+      this.props.me();
+      this.props.history.push('/trips');
+    })
+  }
 
   render() {
     const { trip } = this.state;
 
     if(trip){
-      const { city, fromDate, toDate } = this.state.trip;
+      const { city, fromDate, toDate, _id } = this.state.trip;
         return (
         <section className='trip-container'>
           <Backbar history={this.props.history}/>
           <header>
           <h2>{city}</h2>
-          
           <p><Moment format="DD/MM">{fromDate}</Moment> – <Moment format="DD/MM/YYYY">{toDate}</Moment></p>
+          <span onClick={() => {this.deleteTrip(_id)}}>Delete</span>
           </header>
           {/* <img src={img} alt={name}/> */}
           <section className='pad-container'>

@@ -25,12 +25,15 @@ class Trips extends Component {
 
 
   render() {
+    const { trips } = this.state;
     return (
       <section className='card-container'>
         <div className='header'>
         <p className='title'>Upcoming trips</p>
         <Link to={'/trips/new'} className='add-trip'>+</Link>
         </div>
+        {trips.length > 0
+        ? 
         <section className='scroll-wrapper'>
         {this.state.trips.map((trip, i) => {
           return (
@@ -41,6 +44,14 @@ class Trips extends Component {
           )
         })}
         </section>
+        : 
+        <section class="scroll-wrapper">
+          <a class="card">
+            <img src="" alt="Add new trip" />
+            <span>Add new trip</span>
+          </a>
+        </section>
+        }
       </section>
     )
   }

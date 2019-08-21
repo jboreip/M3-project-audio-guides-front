@@ -24,6 +24,11 @@ class TripsService {
     .then((response => response.data))
   }
 
+  deleteTrip(id) {
+    return this.trips.delete(`/trips/${id}/delete`)
+    .then((response => response.data))
+  }
+
 }
 
 const tripsService = new TripsService();

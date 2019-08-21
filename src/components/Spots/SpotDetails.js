@@ -4,11 +4,14 @@ import spotsService from '../../services/spots-service.js'
 import Loading from '../Loading/Loading';
 import Backbar from '../Navigation/Backbar'
 import SpotPlayer from '../../components/Spots/SpotPlayer'
+import userService from '../../services/user-service';
+
 
 class SpotDetails extends Component {
   
   state = {
-    spot: {}
+    spot: {},
+    userSpots: this.props.user.spots,
   }
   
   componentDidMount(){
@@ -24,11 +27,22 @@ class SpotDetails extends Component {
     })
   }
 
+  saveSpot = (id) => {
+    userService.saveSpot(id)
+    .then(response => {
+      this.props.me();
+      this.setState({
+        userSpots: response.updatedUser.spots
+      })
+    })
+  }
+
+
 
   render() {
-    const { spot } = this.state;
+    const {spot, userSpots} = this.state;
     if(spot){
-      const { name, img, city, description, audioFile} = this.state.spot;
+      const { name, img, city, description, audioFile, _id} = this.state.spot;
         return (
         <>
         <Backbar history={this.props.history}/>
@@ -36,6 +50,16 @@ class SpotDetails extends Component {
           <header>
             <img src={img} alt={name}/>
             <h3>{name}</h3>
+            {userSpots.includes(_id)
+            ?
+            <span className='heart' onClick={() => {this.saveSpot(_id)}}>
+              <img src='/images/heart-circle-full.svg' alt='Spot saved'/>
+            </span>
+            :
+            <span className='heart' onClick={() => {this.saveSpot(_id)}}>
+              <img src='/images/heart-circle-empty.svg' alt='Spot saved'/>
+            </span>
+            }
           </header>
           <section className='pad-container'>
           <p>{description}</p>
