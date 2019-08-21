@@ -1,7 +1,7 @@
 
 # City Sounds
 
-![City Sounds](https://imgur.com/Di7HdjE)
+![City Sounds](https://i.imgur.com/Di7HdjE.png)
 
 ## Description
 
