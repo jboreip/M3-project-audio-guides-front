@@ -69,8 +69,7 @@ class AuthProvider extends Component {
 
   componentDidMount(){
     this.getMe();
-  }
-
+}
 
   render() {
     const {user, isLoggedIn, isLoading, me} = this.state;

@@ -49,6 +49,27 @@ p {
   background-color:var(--colorQuartary);
 }
 
+/* --- Forms / Inputs --- */
+
+input:disabled{
+  color: var(--colorDisabled);
+  background-color: var(--colorSecondary);
+  border-color:var(--colorDisabled);
+}
+
+input {
+  font-size: 1.04em;
+  border-radius: 8px;
+  border: solid 1px var(--colorTerciary);
+  height: 6vh;
+  padding: 10px;
+  background:transparent;
+  color: var(--colorPrimary)
+}
+
+input::placeholder{
+  color: var(--colorPrimary)
+}
 
 /* --- Nav --- */
 
@@ -122,12 +143,13 @@ nav ul li a img {
 
 .btn {
   width: 80vw;
-  min-height: 70px;
+  min-height: 55px;
   border-radius: 8px;
   box-shadow: 0 10px 20px -10px var(--colorPrimary);
   font-size: 1.5em;
-  margin: 0 auto;
+  margin: 10px auto;
   display: block;
+  text-decoration:none;
 }
 
 .btn-primary {
@@ -151,6 +173,7 @@ nav ul li a img {
 .cancel {
   margin-top:25px;
   display:block;
+  color: var(--colorPrimary);
 }
 
 
@@ -215,6 +238,32 @@ nav ul li a img {
 } */
 
 
+/* --- Logo --- */
+.logo-image {
+
+}
+
+.logo-text{
+  color: var(--colorPrimary)
+}
+
+.logo-text span:first-of-type{
+  font-weight: 300;
+}
+.logo-text span:last-of-type{
+  font-weight: 600;
+}
+
+
+/* --- Legal --- */
+
+.legal{
+  font-size: 0.65em;
+  color: var(--colorPrimary);
+  position: fixed;
+  bottom: 20px;
+}
+
 /* --- Login / Signup --- */
 
 .log-sign-container{
@@ -223,6 +272,39 @@ nav ul li a img {
   flex-direction:column;
   align-items: center;
   justify-content: center;
+}
+
+.log-sign-container .logo-text {
+  font-size:2.7em;
+  margin-top:0;
+}
+
+.log-sign-container .logo-image {
+  width:25vw;
+  height:25vw;
+}
+
+.log-sign-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-sign-container input {
+  margin:10px 0;
+}
+
+.log-sign-container .alternative {
+  font-size:0.8em;
+  margin-top:10vh;
+}
+
+.log-sign-container .alternative {
+  color: var(--colorPrimary);
+}
+
+.log-sign-container .alternative a {
+  color: var(--colorPrimary);
+  font-weight:500;
 }
 
 /* --- Discover Map --- */
@@ -321,18 +403,9 @@ max-width:50px;
 .new-trip input {
   width: 44vw;
   margin: 3vh 2vw;
-  font-size: 1.04em;
-  border-radius: 8px;
-  border: solid 1px var(--colorPrimary);
-  height: 6vh;
-  padding: 10px;
+
 }
 
-.new-trip input:disabled{
-  color: var(--colorDisabled);
-  background-color: var(--colorSecondary);
-  border-color:var(--colorDisabled);
-}
 
 /* --- Cards --- */
 
@@ -415,6 +488,14 @@ box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
 padding:20px;
 }
 
+.spot-container .pad-container p {
+  margin-bottom:40px;
+}
+.spot-container .pad-container audio {
+  border: 1px solid var(--colorTerciary);
+  border-radius: 30px;
+}
+
 .spot-container img {
   height: 33vh;
   width: 100vw;
@@ -426,4 +507,55 @@ padding:20px;
   text-align: left;
   overflow: hidden;
   font-size: 0.9em;
+}
+
+/* --- User Profile --- */
+
+.profile-container {
+  padding-top: 50px;
+}
+
+.profile-container h1 {
+margin: 20px 0 0 0;
+}
+
+.profile-container img{
+  width:35vw;
+  height:35vw;
+  background: white;
+  border-radius: 50%;
+  object-fit: cover;
+  border:1px solid var(--colorPrimary);
+}
+
+.image-uploader-form label input{
+  display:none;
+}
+
+.image-uploader-form label{
+  background-color: var(--colorTerciary);
+  color: white;
+  height: 35vw;
+  width: 35vw;
+  border-radius: 50%;
+  display: block;
+  margin: 0px auto;
+  position: absolute;
+  left: 0px;
+  opacity: 0;
+  right: 0px;
+}
+
+.image-uploader-form label:hover, .image-uploader-form label:active{
+  cursor:pointer;
+  opacity: 0.7;
+}
+
+.image-uploader-form label span{
+  top: 14vw;
+  left: 0;
+  font-size: 20px;
+  font-weight:bold;
+  right: 0;
+  position: absolute;
 }

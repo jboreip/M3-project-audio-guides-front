@@ -8,11 +8,6 @@ class FlickrService {
     })
   }
   
-
-
-// 13.38333
-// 52.51667
-  
   getCityImage(lat,lon) {
     return this.flickr.get('/',{
       params: {

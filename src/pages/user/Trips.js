@@ -28,7 +28,7 @@ class Trips extends Component {
     return (
       <section className='card-container'>
         <div className='header'>
-        <p className='title'>Upcoming Trips</p>
+        <p className='title'>Upcoming trips</p>
         <Link to={'/trips/new'} className='add-trip'>+</Link>
         </div>
         <section className='scroll-wrapper'>

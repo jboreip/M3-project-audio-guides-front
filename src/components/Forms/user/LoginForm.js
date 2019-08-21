@@ -5,15 +5,13 @@ import * as Yup from 'yup';
 
 const LoginForm = ({values, errors, touched, isSubmitting, ...props}) => {
   return (
-    <div className="App">
       <Form>
-        <Field type='email' name='email' placeholder='Write your email'/>
+        <Field type='email' name='email' placeholder='Email'/>
         {errors.email && touched.email ? <p>{errors.email}</p> : null}
-        <Field type='password' name='password' placeholder='Set a password'/>
+        <Field type='password' name='password' placeholder='Password'/>
         {errors.password && touched.password ? <p>{errors.password}</p> : null}
-        <button disabled={isSubmitting && true} type='submit'> submit </button>
+        <button disabled={isSubmitting && true} className='btn btn-primary' type='submit'> Login </button>
       </Form>
-    </div>
   );
 }
 

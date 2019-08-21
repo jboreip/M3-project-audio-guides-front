@@ -5,8 +5,7 @@ import React from 'react'
     const { src } = props;
     return (
       <>
-      <audio controls>
-        <source src={`/sounds/${src}`} type='audio/mpeg' />
+      <audio controls src={`/sounds/${src}`} type='audio/mpeg'>
           Your browser does not support the audio element.
       </audio>
       </>

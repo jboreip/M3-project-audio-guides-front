@@ -40,11 +40,12 @@ class Login extends Component {
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />
         </form> */}
-        <Logo height='30vw' width='30vw' fill='#6d7bfa' stroke=''/>
+        <Logo className='logo-image' width='25vw' height='25vw' fill='#6d7bfa' stroke=''/>
+        <h1 className='logo-text'><span>City</span><span>Sounds</span></h1>
         <LoginForm doLogin={this.doLogin}/>
-        <p>Don't have an accout yet?
-            <Link to={'/signup'}> Signup</Link>
-        </p>
+
+        <p className='alternative'>Don't have an accout yet? <Link to={'/signup'}>Signup</Link></p>
+        <p className='legal'>2109 © City Sounds. All rights reserved.</p>
       </div>
     )
   }

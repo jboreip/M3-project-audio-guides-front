@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
 import SignupForm from '../../components/Forms/user/SignupForm';
+import Logo from '../../components/Logo/Logo';
 
 // import auth from '../services/auth-service';
 
@@ -43,31 +44,15 @@ class Signup extends Component {
   render() {
     // const {email, password, name, birthdate, city, language} = this.state
     return (
-      <React.Fragment>
-        {/* <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='email'>Email:</label>
-          <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-          <label htmlFor='name'>Name:</label>
-          <input id='name' type='text' name='name' value={name} onChange={this.handleChange} />
-          <label htmlFor='birthdate'>Birthdate:</label>
-          <input id='birthdate' type='date' name='birthdate' value={birthdate} onChange={this.handleChange} />
-          <label htmlFor='city'>City:</label>
-          <input id='city' type='text' name='city' value={city} onChange={this.handleChange} />
-          <label htmlFor='language'>Language:</label>
-          <select id='language' name='language' value={language} onChange={this.handleChange}>
-            <option value='EN'>EN</option> 
-            <option value='ES'>ES</option> 
-          </select>
-          <input type='submit' value='Signup' />
-        </form> */}
+      <div className='log-sign-container'>
+        <Logo className='logo-image' width='25vw' height='25vw' fill='#6d7bfa' stroke=''/>
+        <h1 className='logo-text'><span>City</span><span>Sounds</span></h1>
 
         <SignupForm dosignup={this.doSignup}/>
-        <p>Already have an account? 
-          <Link to={'/login'}> Login</Link>
-        </p>
-      </React.Fragment>
+        <p className='alternative'>Already have an account? <Link to={'/login'}> Login</Link></p>
+        <p className='legal'>2109 © City Sounds. All rights reserved.</p>
+
+      </div>
     )
   }
 }

@@ -163,7 +163,7 @@ class SpotsMap extends Component {
               {...viewport}
               mapStyle={style}
               width='100%'  
-              height='100%'
+              height='100vh'
               onViewportChange={this.handleViewportChange}
               mapboxApiAccessToken={token}
               // onClick={this.closePopups}
@@ -200,7 +200,7 @@ class SpotsMap extends Component {
 
               {spots.length > 0 ? (spots.map((spot, i) => {
                 let isSaved = false;
-                if(userSavedSpots.includes(spot._id)){
+                if(userSavedSpots && userSavedSpots.includes(spot._id)){
                   isSaved = true;
                 }
                 return (
