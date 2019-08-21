@@ -3,6 +3,7 @@ import withAuth from '../../components/Auth/withAuth';
 import tripsService from '../../services/trips-service.js'
 import Loading from '../Loading/Loading';
 import TripSpots from '../Trips/TripSpots';
+import Backbar from '../Navigation/Backbar'
 import Moment from 'react-moment';
 
 class TripDetails extends Component {
@@ -27,10 +28,12 @@ class TripDetails extends Component {
 
   render() {
     const { trip } = this.state;
+
     if(trip){
       const { city, fromDate, toDate } = this.state.trip;
         return (
         <section className='trip-container'>
+          <Backbar history={this.props.history}/>
           <header>
           <h2>{city}</h2>
           

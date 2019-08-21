@@ -159,6 +159,21 @@ nav ul li a img {
   display:block;
 }
 
+.go-back{
+  background-color: var(--colorSecondary);
+  text-align: left;
+  padding: 2vh 5vw;
+}
+
+.go-back a{
+  text-decoration:none;
+  color: var(--colorPrimary)
+}
+
+.go-back a:before{
+  content:'<';
+}
+
 
 /* --- Buttons --- */
 
@@ -489,12 +504,13 @@ max-width:50px;
 }
 
 .scroll-wrapper .card img {
-width: 50vw;
-height:30vh;
-border-radius: 10px;
--o-object-fit: cover;
-object-fit: cover;
-box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
+  width: 50vw;
+  height:30vh;
+  filter: brightness(65%);
+  border-radius: 10px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
 }
 
 .scroll-wrapper .card span {
@@ -506,6 +522,7 @@ box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
   right: 0;
   bottom: 35px;
   font-size: 20px;
+  letter-spacing: 1px;
 }
 
 .scroll-wrapper .card:last-of-type {
@@ -514,12 +531,24 @@ box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
 
 /* --- Spots --- */
 
-.spot-container  {
+.spot-container header {
+  position:relative;
+}
 
+.spot-container header h3 {
+  position: absolute;
+  bottom: 11vh;
+  left: 0;
+  right: 0;
+  color: var(--colorSecondary);
+  font-size: 1.5em;
+  padding: 0 3vw;
+  font-weight: 500;
+  text-shadow: 0px 1px 3px var(--colorText);
 }
 
 .spot-container .pad-container {
-padding:20px;
+padding:30px;
 }
 
 .spot-container .pad-container p {
@@ -537,7 +566,7 @@ padding:20px;
 }
 
 .spot-container p {
-  height: 150px;
+  height: 19vh;
   text-align: left;
   overflow: hidden;
   font-size: 0.9em;
@@ -631,6 +660,7 @@ margin:0;
 .grid-container .spot-card img{
   width: 42vw;
   height: 25vh;
+  filter: brightness(65%);
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
@@ -638,12 +668,13 @@ margin:0;
 
 .grid-container .spot-card span{
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   left: 0;
   right: 0;
   color:var(--colorSecondary);
-  font-size:12px;
+  font-size:14px;
   padding:0 3vw;
-  text-shadow: 0px 1px 3px var(--colorText);
+  font-weight:500;
+  /* text-shadow: 0px 1px 3px var(--colorText); */
 }
 
