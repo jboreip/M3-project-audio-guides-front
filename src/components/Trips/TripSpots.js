@@ -18,7 +18,11 @@ class TripSpots extends Component {
     spotsService.getSpots()
     .then(response => {
       response.listOfSpots.map((spot, i) => {
+        if(spot.city === this.props.currentTrip.city){
         return this.state.userSpots.includes(spot._id) && initCounter++
+        } else {
+          return initCounter
+        }
       })
     this.setState({
       spots: response.listOfSpots,
@@ -28,17 +32,17 @@ class TripSpots extends Component {
   }
 
   saveSpot = (id) => {
-    let counter = 0;
+    // let counter = 0;
     userService.saveSpot(id)
     .then(response => {
       this.props.me();
-      const userSpotsCopy = [...response.updatedUser.spots]
-      userSpotsCopy.map((spot) => {
-        return userSpotsCopy.includes(spot) && counter++
-      })
+      // const userSpotsCopy = [...response.updatedUser.spots]
+      // userSpotsCopy.map((spot) => {
+      //   return userSpotsCopy.includes(spot) && counter++
+      // })
       this.setState({
         userSpots: response.updatedUser.spots,
-        counter: counter,
+        // counter: counter,
       })
     })
   }
@@ -61,7 +65,7 @@ class TripSpots extends Component {
             if(spot.city === currentTrip.city) {
               if(userSpots.includes(spot._id)){
                 return (
-                  <div className={'spot-card'}>
+                  <div key={spot._id} className={'spot-card'}>
                   <span className='heart' onClick={() => {
                     this.saveSpot(spot._id)
                   }}>
@@ -89,7 +93,7 @@ class TripSpots extends Component {
               if(spot.city === currentTrip.city) {
                 if(!userSpots.includes(spot._id)){
                   return (
-                    <div className={'spot-card'}>
+                    <div key={spot._id} className={'spot-card'}>
                     <span className='heart' onClick={() => {
                       this.saveSpot(spot._id)
                     }}>
