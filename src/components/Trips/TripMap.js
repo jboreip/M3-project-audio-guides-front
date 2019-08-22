@@ -141,7 +141,7 @@ class TripMap extends Component {
                 trackProximity={true}
                 minLength={4}
                 language='en'
-                placeholder={'Where do you wanna go?'}
+                placeholder={'Where do you want to go?'}
                 />
 
           { showMarker && <Marker
