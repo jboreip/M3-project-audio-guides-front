@@ -130,7 +130,7 @@ render(){
             closeButton={false} >
               <Link to={`/spots/${id}`}>
                 <div className='spot-popup-image'>
-                  <img src={img} alt={spotName}/>
+                  <img src={`/city_images/${img}`} alt={spotName}/>
                 </div>
                 <div className='spot-popup-title'>
                   <p>{spotName}</p>

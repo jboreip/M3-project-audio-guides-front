@@ -68,7 +68,7 @@ class TripSpots extends Component {
                     <img src='/images/heart-circle-full.svg' alt='Spot saved'/>
                   </span>
                   <Link to={`/spots/${spot._id}`}>
-                  <img src={spot.img} alt={spot.name} className='spot-image'/>
+                  <img src={`/city_images/${spot.img}`} alt={spot.name} className='spot-image'/>
                   <span className='spot-title'>{spot.name}</span>
                   </Link>
                   </div>
@@ -96,7 +96,7 @@ class TripSpots extends Component {
                       <img src='/images/heart-circle-empty.svg' alt='Spot empty'/>
                     </span>
                     <Link to={`/spots/${spot._id}`}>
-                    <img src={spot.img} alt={spot.name} className='spot-image'/>
+                    <img src={`/city_images/${spot.img}`} alt={spot.name} className='spot-image'/>
                     <span className='spot-title'>{spot.name}</span>
                     </Link>
                     </div>

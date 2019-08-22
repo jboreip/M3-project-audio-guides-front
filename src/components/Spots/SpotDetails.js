@@ -48,7 +48,7 @@ class SpotDetails extends Component {
         <Backbar history={this.props.history}/>
         <section className='spot-container'>
           <header>
-            <img src={img} alt={name}/>
+            <img src={`/city_images/${img}`} alt={name}/>
             <h3>{name}</h3>
             {userSpots.includes(_id)
             ?
