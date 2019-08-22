@@ -473,28 +473,19 @@ max-width:50px;
 
 .card-container .header{
   display: flex;
-  padding: 0 4vw;
+  padding: 0 5vw;
   align-items: center;
   justify-content: space-between;
 }
 
 
 .card-container .header .title{
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
-.card-container .header .add-trip{
-  background-color: var(--colorPrimary);
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  line-height: 36px;
-  border-radius: 50%;
-  text-decoration: none;
-  color: var(--colorSecondary);
-  font-weight: bold;
-  font-size: 35px;
-  cursor:pointer;
+.card-container .header .add-trip img{
+  width: 8vw;
+  padding-top: 0.9vh;
 }
 
 
@@ -502,14 +493,41 @@ max-width:50px;
   display: flex;
   overflow-x: scroll;
   margin-top:20px;
+  padding-bottom: 30px;
 }
 
 
 .scroll-wrapper .card {
+  margin-right: 5vw;
+  position: relative;
+  scroll-snap-align: center;
+}
+
+.scroll-wrapper .card:first-child {
+  margin-left: 5vw;
+}
+
+.scroll-wrapper .card:last-child {
+  padding-right: 5vw;
+}
+
+.scroll-wrapper .card:last-child .title, .scroll-wrapper .card:last-child .days-left  {
+  padding-right: 5vw;
+}
+
+.scroll-wrapper .empty-card{
   margin-left:4vw;
   position: relative;
   scroll-snap-align: center;
-  padding-bottom: 20px;
+  width: 50vw;
+  height:30vh;
+  background:white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
+}
+
+.scroll-wrapper .empty-card img{
+  padding-top: 10vh;
 }
 
 .scroll-wrapper .card img {
@@ -522,21 +540,29 @@ max-width:50px;
   box-shadow: 0 10px 20px -10px rgba(24, 28, 57, 0.3);
 }
 
-.scroll-wrapper .card span {
+.scroll-wrapper .card .title, .scroll-wrapper .empty-card .title {
   color: var(--colorSecondary);
   font-weight: bold;
   text-align: center;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 35px;
+  bottom: 40px;
   font-size: 20px;
   letter-spacing: 1px;
 }
 
-.scroll-wrapper .card:last-of-type {
-  padding-right:4vw;
+.scroll-wrapper .card .days-left {
+  color: var(--colorSecondary);
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  font-size: 12px;
 }
+
 
 /* --- Spots --- */
 
@@ -647,12 +673,45 @@ margin: 20px 0 0 0;
   position: absolute;
 }
 
+.logout{
+  position: absolute;
+  bottom: 15vh;
+  left: 0;
+  right: 0;
+  color: var(--colorPrimary);
+  text-decoration:none;
+}
+
 
 /* --- Trips --- */
+
+.header-trips {
+  text-align: left;
+  padding: 4vh 5vw;
+  background-color: var(--colorQuinatry);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-trips h1{
+  margin:0;
+}
+
+
+/* --- Trip --- */
+
 .trip-container header {
   text-align: left;
   padding: 4vh 5vw;
   background-color: var(--colorQuinatry);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trip-container header img {
+  width: 10vw;
 }
 
 .trip-container header h2 {
@@ -689,11 +748,11 @@ margin:0;
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  padding: 0 2vw;
+  padding: 0 3vw;
 }
 
 .grid-container .spot-card {
-  width:48vw;
+  width:47vw;
   position: relative;
   margin-bottom:20px;
 }
@@ -726,4 +785,34 @@ margin:0;
   right: 4vw;
   top: 1vh;
   z-index: 1;
+}
+
+
+/* --- Alerts --- */
+
+.react-confirm-alert-body {
+  width: 80vw;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  text-align:center;
+  box-shadow: 0 5px 20px 0px rgba(24, 28, 57, 0.3)
+}
+
+.react-confirm-alert-body > h1 {
+  font-size:1.2em;
+}
+
+.react-confirm-alert-button-group {
+  justify-content: center;
+}
+
+.react-confirm-alert-button-group button:first-child{
+  background-color: var(--colorTerciary);
+  color: var(--colorSecondary)
+}
+
+.react-confirm-alert-button-group button:last-child{
+  margin-right:0;
+  background-color: var(--colorPrimary);
+  color: var(--colorSecondary)
 }

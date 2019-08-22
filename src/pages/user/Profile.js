@@ -28,7 +28,7 @@ changeImg = (imgURL) => {
         <img src={this.state.img}/>
         <h1>{this.props.user.name}</h1>
         <p>{this.props.user.email}</p>
-        <Link onClick={this.props.logout}>Logout</Link>
+        <Link className='logout' onClick={this.props.logout}>Logout</Link>
       </div>
     )
   }

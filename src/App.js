@@ -16,7 +16,6 @@ import SpotDetails from './components/Spots/SpotDetails'
 import TripDetails from './components/Trips/TripDetails'
 
 import './App.css';
-// import 'milligram';
 
 class App extends Component {
   render () {

@@ -5,6 +5,8 @@ import Loading from '../Loading/Loading';
 import TripSpots from '../Trips/TripSpots';
 import Backbar from '../Navigation/Backbar'
 import Moment from 'react-moment';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 class TripDetails extends Component {
   
@@ -25,6 +27,23 @@ class TripDetails extends Component {
     })
   }
 
+  deleteConfirm = (id) => {
+    confirmAlert({
+      title: 'Are you sure?',
+      message: 'You are about to delete this trip.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.deleteTrip(id)
+        },
+        {
+          label: 'No',
+          onClick: () => null
+        }
+      ]
+    });
+  }
+
   deleteTrip = (id) => {
     tripsService.deleteTrip(id)
     .then((response) => {
@@ -42,9 +61,11 @@ class TripDetails extends Component {
         <section className='trip-container'>
           <Backbar history={this.props.history}/>
           <header>
+          <div>
           <h2>{city}</h2>
           <p><Moment format="DD/MM">{fromDate}</Moment> – <Moment format="DD/MM/YYYY">{toDate}</Moment></p>
-          <span onClick={() => {this.deleteTrip(_id)}}>Delete</span>
+          </div>
+          <span onClick={() => {this.deleteConfirm(_id)}}><img src='/images/delete.svg' alt='delete-trip'/></span>
           </header>
           {/* <img src={img} alt={name}/> */}
           <section className='pad-container'>
