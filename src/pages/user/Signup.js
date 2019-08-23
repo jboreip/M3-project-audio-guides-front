@@ -4,8 +4,6 @@ import withAuth from '../../components/Auth/withAuth';
 import SignupForm from '../../components/Forms/user/SignupForm';
 import Logo from '../../components/Logo/Logo';
 
-// import auth from '../services/auth-service';
-
 class Signup extends Component {
 
   state = {
@@ -18,8 +16,6 @@ class Signup extends Component {
   };
 
   doSignup = (values) => {
-    // event.preventDefault();
-    console.log(values)
     const {email, password, name, birthdate, city, language} = values;
 
     this.props.signup({ email, password, name, birthdate, city, language })
@@ -42,7 +38,6 @@ class Signup extends Component {
   }
 
   render() {
-    // const {email, password, name, birthdate, city, language} = this.state
     return (
       <div className='log-sign-container'>
         <Logo className='logo-image' width='25vw' height='25vw' fill='#6d7bfa' stroke=''/>

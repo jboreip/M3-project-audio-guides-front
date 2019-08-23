@@ -65,7 +65,6 @@ export default withFormik({
           email: 'This email already taken'
         })
       } else {
-        console.log(props);
         props.dosignup(values);
         resetForm();
       }

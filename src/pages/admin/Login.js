@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuth from '../components/withAuth';
 
-// ya no necesitamos el service, ya que los métodos (login, logout, etc.) los hemos pasado con el withAuth como props
-// import auth from '../services/auth-service';
 
 class Login extends Component {
   state = {

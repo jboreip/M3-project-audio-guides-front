@@ -4,11 +4,8 @@ import React, { Component } from 'react'
 import withCoordinates from '../../Location/withCoordinates';
 import withAuth from '../../../components/Auth/withAuth';
 import SpotDot from '../../Discover/map/SpotDot';
-// import MapGL from 'react-map-gl'
 import ReactMapGL, {GeolocateControl} from 'react-map-gl'
-// import { GeoJSONLayer } from "react-mapbox-gl";
 import Geocoder from 'react-map-gl-geocoder';
-// import axios from 'axios';
 import spotsService from '../../../services/spots-service';
 import CloseLayer from '../../Discover/map/CloseLayer'
 
@@ -38,12 +35,6 @@ class SpotsMap extends Component {
     userSavedSpots: []
   }
 
-  // getCurrentCountry = async () => {
-  //   const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.location[1]},${this.props.location[0]}.json?access_token=${token}`);
-  //   this.setState({
-  //     countryCode: response.data.features[5].properties.short_code.toUpperCase()
-  //   })
-  // };
 
   getSpots = async () => {
   const response = await spotsService.getSpots();
@@ -52,7 +43,6 @@ class SpotsMap extends Component {
 
 
   componentDidMount(){
-    // this.getCurrentCountry();
     const userSavedSpots = this.props.user.spots
     this.getSpots().then((spots) =>{
       this.props.me();
@@ -69,15 +59,9 @@ class SpotsMap extends Component {
     })
   }
 
-
-
-
-
   closeLayerToggle = () => {
     const {closeLayer} = this.state;
-    // close layer activada
     if (!closeLayer){
-      console.log('close layer activada')
       this.setState({
         closeLayer: true
       })
@@ -87,15 +71,11 @@ class SpotsMap extends Component {
   popupsToggle = () => {
     const {popupsStatus} = this.state;
     if (popupsStatus) {
-      // hay popups abiertos
-    console.log('no hay popups abiertos + close layer desactivada')
     this.setState({
       popupsStatus: false,
       closeLayer: false,
     })
     } else {
-      // no hay popups abiertos
-    console.log('hay popups abiertos')
     this.setState({
       popupsStatus: true
     })
@@ -104,22 +84,14 @@ class SpotsMap extends Component {
 
 
   closeAllPopups = () => {
-    console.log('clicked close layer')
     const { popupsStatus } = this.state;
     if(popupsStatus){
-      console.log('close all popups executed')
       this.setState({
         popupsStatus: false,
         closeLayer: false,
       })
     }
   }
-
-
-
-
-
-
 
   
   mapRef = React.createRef()
@@ -137,21 +109,6 @@ class SpotsMap extends Component {
       ...geocoderDefaultOverrides
     });
   };
-
-
-  // handleOnResult = event => {
-  //   console.log('handleOnResult executed')
-  //   this.setState({
-  //     searchResultLayer: new ScatterplotLayer({
-  //       id: 'search-result',
-  //       data: event.result.geometry,
-  //       getFillColor: [255, 0, 0, 128],
-  //       getRadius: 1000,
-  //       pointRadiusMinPixels: 20,
-  //       pointRadiusMaxPixels: 20
-  //     })
-  //   })
-  // }
 
 
     render(){

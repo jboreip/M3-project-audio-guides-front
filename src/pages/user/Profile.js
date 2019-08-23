@@ -23,7 +23,6 @@ changeImg = (imgURL) => {
 
     return (
       <div className='profile-container'>
-        {/* <h1>Welcome {this.props.user.name}</h1> */}
         <ImageUpload changeImg={this.changeImg}/>
         <img src={this.state.img}/>
         <h1>{this.props.user.name}</h1>

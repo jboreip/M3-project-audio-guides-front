@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import {Marker, Popup} from 'react-map-gl'
 import { Link } from 'react-router-dom';
-// import CloseLayer from '../../Discover/map/CloseLayer'
 import Pin from '../map/Pin'
-// import withAuth from '../../../components/Auth/withAuth';
 import userService from '../../../services/user-service';
 
 
@@ -14,38 +12,13 @@ class SpotsDot extends Component {
     isSaved: this.props.isSaved,
   }
 
-// togglePopup = () => {
-//   const { showPopup, popupOpen} = this.state;
-//   const {popupStatus, popupChanger} = this.props;
-//   if(showPopup && popupStatus){
-//     this.closePopup();
-//     this.setState({
-//       showPopup: true,
-//       closeLayer: true,
-//     })
-//   } else if (showPopup && !popupStatus){
-//     this.setState({
-//       showPopup: false,
-//       closeLayer: false,
-//     })
-//   } else {
-//     popupChanger();
-//     this.setState({
-//       showPopup: true,
-//       closeLayer: true
-//     })
-//   }
-// }
 
 
 togglePopup = () => {
   const {showPopup} = this.state
   const { popupsToggle, closeLayerToggle } = this.props;
-  // activa la close layer
   closeLayerToggle();
-  // avisa a Map que hay popups abiertos
   popupsToggle();
-  // muestra el popup del marker
   if (showPopup){
     this.setState({
       showPopup: false,
@@ -58,7 +31,6 @@ togglePopup = () => {
     
 }
 
-// cuando se cierra el popup
 closePopup = () => {
   console.log('close popup executed')
   const { showPopup } = this.state;
@@ -83,14 +55,8 @@ if (this.state.isSaved) {
     isSaved: true,
   })
 }
-
 }
 
-
-// handleDeleteClick = async (id) => {
-//     const response = await spots.getSpots();
-//     return response;
-// }
 
 render(){
   const { id, latitude, longitude, spotName, img, popupsStatus} = this.props;

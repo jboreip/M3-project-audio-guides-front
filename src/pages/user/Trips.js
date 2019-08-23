@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import withAuth from '../../components/Auth/withAuth';
-// import spotsService from '../../services/spots-service';
 import tripsService from '../../services/trips-service';
-// import mapboxService from '../../services/mapbox-service';
 import withCoordinates from '../../components/Location/withCoordinates';
 import moment from 'moment';
 
@@ -60,11 +58,11 @@ class Trips extends Component {
         })}
         </section>
         : 
-        <Link to={'/trips/new'} class='scroll-wrapper'>
-          <a class='empty-card'>
+        <Link to={'/trips/new'} className='scroll-wrapper'>
+          <div className='empty-card'>
             <img src='/images/add-new.svg' alt='Add new trip' />
             <span className='title' style={{'color':'#6d7bfa'}}>Add new trip</span>
-          </a>
+          </div>
         </Link>
         }
       </section>

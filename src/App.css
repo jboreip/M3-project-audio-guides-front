@@ -264,15 +264,6 @@ nav ul li a img {
   animation-delay: 0.5s;
   margin-right:0;
 }
-/* .circle-6{
-  animation-delay: 0.6s;
-}
-.circle-7{
-  animation-delay: 0.7s;
-}
-.circle-8{
-  animation-delay: 0.8s;
-} */
 
 
 /* --- Logo --- */
@@ -429,7 +420,6 @@ max-width:50px;
 
 .heart-icon.false svg {
   fill:white;
-  /* stroke-linecap:round; */
 }
 
 .mapboxgl-popup {
@@ -451,7 +441,6 @@ max-width:50px;
 .trip-map .mapboxgl-ctrl-geocoder--input {
   font-family: RobotoMono, monospace;
   font-size: 1em;
-  /* box-shadow: 0 10px 11px -10px var(--colorPrimary); */
 }
 
 .mapboxgl-ctrl:nth-of-type(2), .mapboxgl-ctrl-bottom-right{
@@ -775,7 +764,6 @@ margin:0;
   font-size:14px;
   padding:0 3vw;
   font-weight:500;
-  /* text-shadow: 0px 1px 3px var(--colorText); */
 }
 
 .grid-container .spot-card .heart img{

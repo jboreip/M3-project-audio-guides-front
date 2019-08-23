@@ -5,7 +5,6 @@ import withCoordinates from '../Location/withCoordinates';
 import MapGL, {Marker} from 'react-map-gl';
 import DraggablePin from '../Trips/DraggablePin';
 import Geocoder from 'react-map-gl-geocoder';
-// import axios from 'axios';
 
 
 const token = 'pk.eyJ1IjoicGllcm9iaiIsImEiOiJjanlpbjYxYXEwMDg3M21yeHhiYzZvbGh1In0.s4qwoXQLSGVCCH84CbKd_g';
@@ -27,15 +26,6 @@ class TripMap extends Component {
     style: 'mapbox://styles/pierobj/cjzka0a4y088s1cnzqdw79v0g',
   }
 
-  // getCurrentCountry = async () => {
-  //   const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.props.location[1]},${this.props.location[0]}.json?access_token=${token}`);
-  //   this.setState({
-  //     countryCode: response.data.features[5].properties.short_code.toUpperCase()
-  //   })
-  // };
-
-  
-
   componentDidMount(){
     this.setState({
       viewport:{
@@ -54,7 +44,7 @@ class TripMap extends Component {
         viewport: { ...this.state.viewport, ...viewport }
       })
   }
-  // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+
   handleGeocoderViewportChange = viewport => {
     const geocoderDefaultOverrides = { transitionDuration: 1000 };
     const newViewport = {...viewport};
@@ -99,12 +89,7 @@ class TripMap extends Component {
     const [...resultLocation] = event.result.center;
     const formDisabled = false;
     this.props.getLocationFromMap(city, country, resultLocation, formDisabled);
-    // console.log(this.props)
-    // this.props.getCoordsFromMap(resultLocation);
-    // let viewportCopy = this.state.viewport;
-    // viewportCopy.zoom = 19;
     this.setState({
-      // viewport: viewportCopy,
       marker: {
         longitude: resultLocation[0],
         latitude: resultLocation[1]

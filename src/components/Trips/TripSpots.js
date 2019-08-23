@@ -32,17 +32,11 @@ class TripSpots extends Component {
   }
 
   saveSpot = (id) => {
-    // let counter = 0;
     userService.saveSpot(id)
     .then(response => {
       this.props.me();
-      // const userSpotsCopy = [...response.updatedUser.spots]
-      // userSpotsCopy.map((spot) => {
-      //   return userSpotsCopy.includes(spot) && counter++
-      // })
       this.setState({
         userSpots: response.updatedUser.spots,
-        // counter: counter,
       })
     })
   }
