@@ -18,10 +18,10 @@ class TripsService {
     .then(response => response.data)
   }
 
-  newTrip(trip, user) {
+  newTrip(trip) {
     const { city, country, location, img, fromDate, toDate } = trip;
-    return this.trips.post('/trips/new/', { city, country, location, img, fromDate, toDate, user })
-    .then((response => response.data))
+    return this.trips.post('/trips/new/', { city, country, location, img, fromDate, toDate })
+    .then(response => response.data)
   }
 
   deleteTrip(id) {

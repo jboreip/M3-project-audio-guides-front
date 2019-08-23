@@ -12,16 +12,17 @@ const TripNewForm = ({values, errors, touched, isSubmitting, ...props}) => {
         <TripMap getLocationFromMap={props.getLocationFromMap}/>
       </section>
       <section className='form-container'>
-      <p style={{'margin-top': 40}}> When are you travelling?</p>
+      <p style={{'marginTop': 40}}> When are you travelling?</p>
       <Form className='new-trip'>
         <label htmlFor='fromDate' style={{display:'none'}}>From date</label>
         <Field id='fromDate' type='date' name='fromDate' disabled={props.formDisabled}/>
         <label htmlFor='toDate' style={{display:'none'}}>To date</label>
         <Field id='toDate' type='date' name='toDate' disabled={props.formDisabled}/>
+        {props.customError === 460 && <p className='error-message'>From Date cannot happen after To Date</p>
+        || props.customError === 461 && <p className='error-message'>Are you a time traveler?</p>}
         {errors.fromDate && touched.fromDate && <p className='error-message'>{errors.fromDate}</p>}
         {errors.toDate && touched.toDate && <p className='error-message'>{errors.toDate}</p>}
         <button className={`btn add ${props.formDisabled ? 'btn-disabled' : 'btn-primary'}`} disabled={props.formDisabled} type='submit'> Add trip </button>
-        {/* <button className={`btn btn-primary add`} disabled={isSubmitting && true} type='submit'> Add trip </button> */}
       </Form>
       </section>
       <Link to='/trips/' className='cancel'>Cancel</Link>

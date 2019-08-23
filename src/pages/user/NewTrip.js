@@ -13,6 +13,7 @@ class NewTrip extends Component {
     fromDate: '',
     toDate: '',
     formDisabled:true,
+    customError: null,
   }
 
   getLocationFromMap = (city, country, newLocation, formDisabled) => {
@@ -20,10 +21,9 @@ class NewTrip extends Component {
       city,
       country,
       location: newLocation,
-      formDisabled: formDisabled
+      formDisabled: formDisabled,
     })
   }
-
 
 
   createNewTrip = (values) => {
@@ -44,8 +44,13 @@ class NewTrip extends Component {
           this.props.user.trips = data.trips;
           this.props.history.push('/trips');
         })
+        .catch(error => {
+          this.setState({
+            customError: error.response.status,
+        })
     })
-    .catch(error => console.log(error) )
+    .catch(error => console.error(error) )
+    })
   }
 
   handleChange = (event) => {  
@@ -56,7 +61,7 @@ class NewTrip extends Component {
   render() {
     return (
       <React.Fragment>
-        <TripNewForm createNewTrip={this.createNewTrip} getLocationFromMap={this.getLocationFromMap} formDisabled={this.state.formDisabled}/>
+        <TripNewForm createNewTrip={this.createNewTrip} getLocationFromMap={this.getLocationFromMap} formDisabled={this.state.formDisabled} customError={this.state.customError}/>
       </ React.Fragment>
     )
   }
